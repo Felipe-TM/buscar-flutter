@@ -1,6 +1,8 @@
+import 'package:buscar/Widgets/buscar_title.dart';
 import 'package:flutter/material.dart';
 
 const Color blueColor = Color(0xFF1BC2F7);
+const Color lightGray = Color(0xFF898989);
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -15,13 +17,15 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 400,
+    return SizedBox(
+      height: 500,
       width: 250,
       child: Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           body: Column(
             children: [
+              const BuscarTitle(),
               const CustomTextField(label: 'username'),
               const CustomTextField(label: 'password'),
               const Padding(
@@ -36,7 +40,8 @@ class _LoginFormState extends State<LoginForm> {
                         color: Colors.blue[800],
                         decoration: TextDecoration.underline,
                         decorationColor: Colors.blue[800]),
-                  ))
+                  )),
+              div
             ]
                 .map((widget) => Padding(
                       padding: const EdgeInsets.only(bottom: 15),
@@ -85,15 +90,86 @@ class _LoginButton extends State<LoginButton> {
 
   @override
   Widget build(BuildContext context) {
-    return FilledButton(
-      onPressed: onPressed,
-      style: const ButtonStyle(
-          shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+    return Container(
+      decoration: const ShapeDecoration(
+          shadows: [
+            BoxShadow(
+              color: Color(0x3F000000),
+              blurRadius: 4,
+              offset: Offset(0, 4),
+              spreadRadius: 0,
+            )
+          ],
+          shape: RoundedRectangleBorder(
               borderRadius:
                   BorderRadiusDirectional.all(Radius.circular(10.0)))),
-          fixedSize: MaterialStatePropertyAll(Size(125, 50)),
-          backgroundColor: MaterialStatePropertyAll<Color>(Color(0xFF7ACFFF))),
-      child: const Text('Login'),
+      child: FilledButton(
+        onPressed: onPressed,
+        style: const ButtonStyle(
+            shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadiusDirectional.all(Radius.circular(10.0)))),
+            fixedSize: MaterialStatePropertyAll(Size(125, 50)),
+            backgroundColor:
+                MaterialStatePropertyAll<Color>(Color(0xFF7ACFFF))),
+        child: const Text('Login'),
+      ),
     );
   }
 }
+
+var div = SizedBox(
+  width: 340,
+  height: 20,
+  child: Stack(
+    alignment: AlignmentDirectional.center,
+    children: [
+      const Center(
+        child: Text(
+          'or',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Color(0xFF757575),
+            fontSize: 14,
+            fontFamily: 'Istok Web',
+            fontWeight: FontWeight.w400,
+            height: 0,
+            letterSpacing: 0.70,
+          ),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: 10,
+        child: Container(
+          width: 100,
+          decoration: const ShapeDecoration(
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                width: 1,
+                strokeAlign: BorderSide.strokeAlignCenter,
+                color: Color(0xFFD9D9D9),
+              ),
+            ),
+          ),
+        ),
+      ),
+      Positioned(
+        left: 150,
+        top: 10,
+        child: Container(
+          width: 100,
+          decoration: const ShapeDecoration(
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                width: 1,
+                strokeAlign: BorderSide.strokeAlignCenter,
+                color: Color(0xFFD9D9D9),
+              ),
+            ),
+          ),
+        ),
+      ),
+    ],
+  ),
+);
