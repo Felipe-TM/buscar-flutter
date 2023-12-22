@@ -1,5 +1,5 @@
-import 'package:buscar/Widgets/background.dart';
-import 'package:buscar/Widgets/login_form.dart';
+import 'package:buscar/widgets/background.dart';
+import 'package:buscar/widgets/login_form.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,35 +14,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter layout demo',
-        home: LayoutBuilder(builder: (context, constraints) {
-          return ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: constraints.maxHeight,
-              ),
-              child: Stack(children: [
-                Background(),
-                Scaffold(
-                  backgroundColor: Colors.transparent,
-                  resizeToAvoidBottomInset: false,
-                  body: SizedBox(
-                    height: 800,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        const Center(
-                          child: LoginForm(),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(bottom: 15),
-                          child: AppVersion(appVer: appVer),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ]));
-        }));
+      title: 'Flutter layout demo',
+      home: Scaffold(
+        body: Center(
+            child: SingleChildScrollView(
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Background(),
+              Padding(padding: EdgeInsets.only(bottom: 50), child: LoginForm()),
+              AppVersion(appVer: appVer)
+            ],
+          ),
+        )),
+      ),
+    );
   }
 }
 

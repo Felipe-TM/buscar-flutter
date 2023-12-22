@@ -8,6 +8,13 @@ class Background extends StatelessWidget {
   Background({super.key});
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.of(context).size.height < 650) {
+      return Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(color: color));
+    }
+
     return Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
