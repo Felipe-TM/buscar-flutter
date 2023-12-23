@@ -3,7 +3,7 @@ import 'package:inner_shadow_widget/inner_shadow_widget.dart';
 
 class Background extends StatelessWidget {
   final Color color = Colors.white;
-  final Color elipseColor = Color(0xFFA3F4FF);
+  final Color elipseColor = const Color(0xFFA3F4FF);
 
   Background({super.key});
   @override
