@@ -28,20 +28,21 @@ class GoogleButton extends StatelessWidget {
                     BorderRadiusDirectional.all(Radius.circular(10.0)))),
         child: FilledButton(
           onPressed: null,
-          style: const ButtonStyle(
-              shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+          style: ButtonStyle(
+              shape: const MaterialStatePropertyAll(RoundedRectangleBorder(
                   borderRadius:
                       BorderRadiusDirectional.all(Radius.circular(10.0)))),
-              fixedSize: MaterialStatePropertyAll(Size(125, 50)),
-              backgroundColor: MaterialStatePropertyAll<Color>(Colors.white)),
+              fixedSize: const MaterialStatePropertyAll(Size(125, 50)),
+              backgroundColor: MaterialStatePropertyAll<Color>(
+                  Theme.of(context).colorScheme.onSecondary)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset('lib/assets/google.png'),
-              const Text(
+              Text(
                 'Google',
                 style: TextStyle(
-                  color: Color(0xFF6A6969),
+                  color: Theme.of(context).colorScheme.secondary,
                   fontSize: 13,
                   fontFamily: 'Istok Web',
                   fontWeight: FontWeight.w500,

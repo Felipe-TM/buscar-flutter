@@ -36,8 +36,8 @@ class _CustomFilledButtonState extends State<CustomFilledButton> {
             fixedSize: MaterialStatePropertyAll(widget.size),
             foregroundColor:
                 const MaterialStatePropertyAll<Color>(Colors.white),
-            backgroundColor:
-                const MaterialStatePropertyAll<Color>(Color(0xFF7ACFFF))),
+            backgroundColor: MaterialStatePropertyAll<Color>(
+                Theme.of(context).colorScheme.inversePrimary)),
         child: widget.chield,
       ),
     );

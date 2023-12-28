@@ -10,10 +10,10 @@ class BuscarTitle extends StatelessWidget {
       height: 90,
       child: RichText(
         textAlign: TextAlign.center,
-        text: const TextSpan(
+        text: TextSpan(
             text: 'Bus',
             style: TextStyle(
-              color: Color(0xFF7D7D7D),
+              color: Theme.of(context).colorScheme.onBackground.withAlpha(200),
               fontSize: 56,
               fontFamily: 'Kanit',
               fontWeight: FontWeight.w500,
@@ -24,7 +24,7 @@ class BuscarTitle extends StatelessWidget {
               TextSpan(
                 text: 'Car',
                 style: TextStyle(
-                  color: Color(0xFF3FDFF5),
+                  color: Theme.of(context).colorScheme.inversePrimary,
                   fontSize: 56,
                   fontFamily: 'Kanit',
                   fontWeight: FontWeight.w500,

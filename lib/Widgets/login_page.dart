@@ -1,8 +1,10 @@
 import 'package:buscar/Widgets/background.dart';
 import 'package:buscar/widgets/buscar_title.dart';
+import 'package:buscar/widgets/signin_page.dart';
 import 'package:flutter/material.dart';
 
 import 'Login/custom_filled_button.dart';
+import 'Login/div.dart';
 import 'Login/shrinkeble_button.dart';
 import 'Login/google_button.dart';
 import 'Login/password_text_field.dart';
@@ -58,17 +60,17 @@ class _LoginFormState extends State<LoginForm> {
             children: [
               const BuscarTitle(),
               const UnderlineTextField(label: 'username'),
-              const PasswordTextField(label: 'password', obsureText: true),
+              const PasswordTextField(label: 'password'),
               Padding(
-                padding: EdgeInsets.only(top: 25),
+                padding: const EdgeInsets.only(top: 25),
                 child: ShrinkebleButton(
-                    child: CustomFilledButton(chield: Text('Login')),
+                    child: const CustomFilledButton(chield: Text('Login')),
                     onPressed: () {
                       print('teste');
                     }),
               ),
               const SignInButton(),
-              div,
+              const Div(),
               GoogleButton(
                 onPressed: () {
                   print('google');
@@ -93,72 +95,19 @@ class SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () => {},
+        onPressed: () => {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SignInPage()))
+            },
         child: Text(
           'Sign In',
           style: TextStyle(
-              color: Colors.blue[800],
+              color: Theme.of(context).colorScheme.primary,
               decoration: TextDecoration.underline,
-              decorationColor: Colors.blue[800]),
+              decorationColor: Theme.of(context).colorScheme.primary),
         ));
   }
 }
-
-var div = SizedBox(
-  width: 340,
-  height: 20,
-  child: Stack(
-    alignment: AlignmentDirectional.center,
-    children: [
-      const Center(
-        child: Text(
-          'or',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Color(0xFF757575),
-            fontSize: 14,
-            fontFamily: 'Istok Web',
-            fontWeight: FontWeight.w400,
-            height: 0,
-            letterSpacing: 0.70,
-          ),
-        ),
-      ),
-      Positioned(
-        left: 0,
-        top: 10,
-        child: Container(
-          width: 100,
-          decoration: const ShapeDecoration(
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                width: 1,
-                strokeAlign: BorderSide.strokeAlignCenter,
-                color: Color(0xFFD9D9D9),
-              ),
-            ),
-          ),
-        ),
-      ),
-      Positioned(
-        left: 150,
-        top: 10,
-        child: Container(
-          width: 100,
-          decoration: const ShapeDecoration(
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                width: 1,
-                strokeAlign: BorderSide.strokeAlignCenter,
-                color: Color(0xFFD9D9D9),
-              ),
-            ),
-          ),
-        ),
-      ),
-    ],
-  ),
-);
 
 class AppVersion extends StatelessWidget {
   const AppVersion({
@@ -174,8 +123,8 @@ class AppVersion extends StatelessWidget {
       alignment: const Alignment(0, 0.6),
       height: 30,
       child: Text('Version $appVer',
-          style: const TextStyle(
-            color: Color(0xFF898989),
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onBackground.withAlpha(180),
             fontSize: 12,
             fontFamily: 'Kanit',
             fontWeight: FontWeight.w600,

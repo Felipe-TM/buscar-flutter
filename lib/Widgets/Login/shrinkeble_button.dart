@@ -11,7 +11,7 @@ class ShrinkebleButton extends StatefulWidget {
     required this.child,
     required this.onPressed,
     this.shrinkScale = 0.8,
-    this.duration = const Duration(milliseconds: 150),
+    this.duration = const Duration(milliseconds: 100),
   });
 
   @override

@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:inner_shadow_widget/inner_shadow_widget.dart';
 
 class Background extends StatelessWidget {
-  final Color color = Colors.white;
-  final Color elipseColor = const Color(0xFFA3F4FF);
-
-  Background({super.key});
+  const Background({super.key});
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).size.height < 650) {
+    var color = Theme.of(context).colorScheme.background;
+
+    if (MediaQuery.of(context).size.height < 750) {
       return Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -32,7 +31,7 @@ class Background extends StatelessWidget {
                     width: MediaQuery.of(context).size.width + 150,
                     height: MediaQuery.of(context).size.height / 1.8,
                     decoration: ShapeDecoration(
-                      color: elipseColor,
+                      color: Theme.of(context).colorScheme.inversePrimary,
                       shape: const OvalBorder(),
                     ),
                   )),
