@@ -17,9 +17,9 @@ class SignInPage extends StatelessWidget {
         title: const Text('Sign In'),
       ),
       body: Center(
-        child: SizedBox(
-          width: 250,
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: 250,
             child: Column(
                 children: [
               const BuscarTitle(),

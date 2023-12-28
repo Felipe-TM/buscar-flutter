@@ -22,7 +22,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
               onTap: _togglePasswordView,
               child: Icon(
                 color:
-                    Theme.of(context).colorScheme.onBackground.withAlpha(220),
+                    Theme.of(context).colorScheme.onBackground.withAlpha(180),
                 _obsureText ? Icons.visibility : Icons.visibility_off,
               ),
             ),
