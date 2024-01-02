@@ -14,12 +14,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter layout demo',
+        // home: LoginPage(appVer: appVer),
         home: LoginPage(appVer: appVer),
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 219, 238, 253),
-            brightness: Brightness.light,
-          ),
-        ));
+            fontFamily: 'Istok Web',
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color.fromARGB(255, 219, 238, 253),
+              brightness: Brightness.dark,
+            )));
   }
 }

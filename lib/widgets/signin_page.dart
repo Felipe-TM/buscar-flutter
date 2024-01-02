@@ -5,6 +5,7 @@ import 'package:buscar/widgets/Login/custom_filled_button.dart';
 import 'package:buscar/widgets/Login/div.dart';
 import 'package:buscar/widgets/Login/password_text_field.dart';
 import 'package:buscar/widgets/buscar_title.dart';
+import 'package:buscar/widgets/email_page.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatelessWidget {
@@ -30,7 +31,10 @@ class SignInPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: ShrinkebleButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => EmailPage()));
+                    },
                     child: const CustomFilledButton(chield: Text('Send'))),
               ),
               const Div(),

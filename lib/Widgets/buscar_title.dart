@@ -18,7 +18,7 @@ class BuscarTitle extends StatelessWidget {
               fontFamily: 'Kanit',
               fontWeight: FontWeight.w500,
               height: 0,
-              letterSpacing: 2.80,
+              letterSpacing: 4.80,
             ),
             children: [
               TextSpan(
@@ -29,7 +29,7 @@ class BuscarTitle extends StatelessWidget {
                   fontFamily: 'Kanit',
                   fontWeight: FontWeight.w500,
                   height: 0,
-                  letterSpacing: 2.80,
+                  letterSpacing: 4.80,
                 ),
               )
             ]),

@@ -1,4 +1,4 @@
-import 'package:buscar/Widgets/background.dart';
+import 'package:buscar/widgets/background.dart';
 import 'package:buscar/widgets/buscar_title.dart';
 import 'package:buscar/widgets/signin_page.dart';
 import 'package:flutter/material.dart';
