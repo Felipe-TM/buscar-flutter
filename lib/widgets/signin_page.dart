@@ -19,39 +19,44 @@ class SignInPage extends StatelessWidget {
       ),
       body: Center(
         child: SingleChildScrollView(
-          child: SizedBox(
-            width: 250,
-            child: Column(
-                children: [
-              const BuscarTitle(),
-              const UnderlineTextField(label: 'email'),
-              const UnderlineTextField(label: 'username'),
-              const PasswordTextField(label: 'password'),
-              const PasswordTextField(label: 'confirm password'),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: ShrinkebleButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => EmailPage()));
-                    },
-                    child: const CustomFilledButton(chield: Text('Send'))),
-              ),
-              const Div(),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: ShrinkebleButton(
-                    onPressed: () {},
-                    child: GoogleButton(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 43),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                  children: [
+                const BuscarTitle(),
+                const UnderlineTextField(label: 'email'),
+                const UnderlineTextField(label: 'username'),
+                const PasswordTextField(label: 'password'),
+                const PasswordTextField(label: 'confirm password'),
+                Padding(
+                  padding: const EdgeInsets.only(top: 30),
+                  child: ShrinkebleButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EmailPage()));
+                      },
+                      child: const CustomFilledButton(chield: Text('Send'))),
+                ),
+                const Div(),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: ShrinkebleButton(
                       onPressed: () {},
-                    )),
-              )
-            ]
-                    .map((widget) => Padding(
-                          padding: const EdgeInsets.only(top: 30),
-                          child: widget,
-                        ))
-                    .toList()),
+                      child: GoogleButton(
+                        onPressed: () {},
+                      )),
+                )
+              ]
+                      .map((widget) => Padding(
+                            padding: const EdgeInsets.only(top: 30),
+                            child: widget,
+                          ))
+                      .toList()),
+            ),
           ),
         ),
       ),

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Istok Web',
             colorScheme: ColorScheme.fromSeed(
               seedColor: const Color.fromARGB(255, 219, 238, 253),
-              brightness: Brightness.dark,
+              brightness: Brightness.light,
             )));
   }
 }
