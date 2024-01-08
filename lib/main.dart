@@ -1,3 +1,4 @@
+import 'package:buscar/widgets/main_page.dart';
 import 'package:flutter/material.dart';
 import 'widgets/login_page.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter layout demo',
         // home: LoginPage(appVer: appVer),
-        home: LoginPage(appVer: appVer),
+        home: MainPage(),
         theme: ThemeData(
             fontFamily: 'Istok Web',
             colorScheme: ColorScheme.fromSeed(
