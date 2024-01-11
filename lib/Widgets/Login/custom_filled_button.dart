@@ -34,8 +34,8 @@ class _CustomFilledButtonState extends State<CustomFilledButton> {
                 borderRadius:
                     BorderRadiusDirectional.all(Radius.circular(10.0)))),
             fixedSize: MaterialStatePropertyAll(widget.size),
-            foregroundColor:
-                const MaterialStatePropertyAll<Color>(Colors.white),
+            foregroundColor: MaterialStatePropertyAll<Color>(
+                Theme.of(context).colorScheme.background),
             backgroundColor: MaterialStatePropertyAll<Color>(
                 Theme.of(context).colorScheme.inversePrimary)),
         child: widget.chield,
