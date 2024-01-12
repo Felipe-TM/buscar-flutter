@@ -1,3 +1,4 @@
+import 'package:buscar/widgets/buscar_title.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatelessWidget {
@@ -11,11 +12,7 @@ class MainPage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         foregroundColor: Theme.of(context).colorScheme.onBackground,
         leadingWidth: 70,
-        leading: IconButton(
-          iconSize: 52,
-          onPressed: () {},
-          icon: const Icon(Icons.menu_rounded),
-        ),
+        leading: const LeadingIcon(),
         actions: [
           IconButton(
             onPressed: () {},
@@ -23,6 +20,39 @@ class MainPage extends StatelessWidget {
             iconSize: 52,
           )
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(child: BuscarTitle()),
+            ListTile(
+              title: Text('Agenda'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Solicitações'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Histórico'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Conta'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Configurações'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Sair', style: TextStyle(color: Colors.red)),
+              onTap: () =>
+                  Navigator.of(context).popUntil((route) => route.isFirst),
+            ),
+          ],
+        ),
       ),
       body: Stack(alignment: Alignment.bottomCenter, children: [
         Container(
@@ -65,23 +95,39 @@ class MainPage extends StatelessWidget {
               ]),
           child: Row(
             children: [
-              TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.black87,
-                    minimumSize: Size(88, 88),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(2)),
-                    ),
-                  ),
+              FlatTextButton(
                   onPressed: () {},
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Icon(Icons.list_alt), Text('Lista')])),
-            ],
+                  label: const Text('Agenda'),
+                  icon: const Icon(Icons.calendar_month)),
+              FlatTextButton(
+                  onPressed: () {},
+                  label: const Text('Solicitações'),
+                  icon: const Icon(Icons.list_alt)),
+              FlatTextButton(
+                  onPressed: () {},
+                  label: const Text('Histórico'),
+                  icon: const Icon(Icons.history)),
+            ].map((widget) => Expanded(child: widget)).toList(),
           ),
         ),
       ),
+    );
+  }
+}
+
+class LeadingIcon extends StatelessWidget {
+  const LeadingIcon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      iconSize: 52,
+      onPressed: () {
+        Scaffold.of(context).openDrawer();
+      },
+      icon: const Icon(Icons.menu_rounded),
     );
   }
 }
@@ -127,9 +173,9 @@ class FlatTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
         style: TextButton.styleFrom(
-          foregroundColor: Colors.black87,
+          foregroundColor: Theme.of(context).colorScheme.onBackground,
           minimumSize: Size(width, height),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(2)),
           ),

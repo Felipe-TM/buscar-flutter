@@ -1,5 +1,4 @@
 import 'package:buscar/widgets/login_page.dart';
-import 'package:buscar/widgets/main_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,13 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter layout demo',
-        // home: LoginPage(appVer: appVer),
-        home: MainPage(),
+        home: LoginPage(appVer: appVer),
         theme: ThemeData(
             fontFamily: 'Istok Web',
             colorScheme: ColorScheme.fromSeed(
               seedColor: Color.fromARGB(255, 219, 238, 253),
-              brightness: Brightness.light,
+              brightness: Brightness.dark,
             )));
   }
 }
