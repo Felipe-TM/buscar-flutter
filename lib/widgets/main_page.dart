@@ -1,3 +1,8 @@
+import 'package:buscar/Widgets/account_page.dart';
+import 'package:buscar/Widgets/appointments_page.dart';
+import 'package:buscar/Widgets/configuration_page.dart';
+import 'package:buscar/Widgets/history_page.dart';
+import 'package:buscar/Widgets/requests_page.dart';
 import 'package:buscar/widgets/buscar_title.dart';
 import 'package:flutter/material.dart';
 
@@ -28,23 +33,48 @@ class MainPage extends StatelessWidget {
             const DrawerHeader(child: BuscarTitle()),
             ListTile(
               title: Text('Agenda'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AppointmentsPage()));
+              },
             ),
             ListTile(
               title: const Text('Solicitações'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RequestsPage()));
+              },
             ),
             ListTile(
               title: const Text('Histórico'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HistoryPage()));
+              },
             ),
             ListTile(
               title: const Text('Conta'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AccountPage()));
+              },
             ),
             ListTile(
               title: const Text('Configurações'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ConfigurationPage()));
+              },
             ),
             ListTile(
               title: const Text('Sair', style: TextStyle(color: Colors.red)),
