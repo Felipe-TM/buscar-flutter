@@ -126,15 +126,30 @@ class MainPage extends StatelessWidget {
           child: Row(
             children: [
               FlatTextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AppointmentsPage()));
+                  },
                   label: const Text('Agenda'),
                   icon: const Icon(Icons.calendar_month)),
               FlatTextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RequestsPage()));
+                  },
                   label: const Text('Solicitações'),
                   icon: const Icon(Icons.list_alt)),
               FlatTextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HistoryPage()));
+                  },
                   label: const Text('Histórico'),
                   icon: const Icon(Icons.history)),
             ].map((widget) => Expanded(child: widget)).toList(),
@@ -210,7 +225,7 @@ class FlatTextButton extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(2)),
           ),
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [icon, label]));

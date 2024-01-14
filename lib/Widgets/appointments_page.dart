@@ -8,6 +8,7 @@ class AppointmentsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Agenda'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
     );
   }
