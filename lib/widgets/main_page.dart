@@ -20,7 +20,10 @@ class MainPage extends StatelessWidget {
         leading: const LeadingIcon(),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AccountPage()));
+            },
             icon: const Icon(Icons.account_circle),
             iconSize: 52,
           )
@@ -32,7 +35,7 @@ class MainPage extends StatelessWidget {
           children: [
             const DrawerHeader(child: BuscarTitle()),
             ListTile(
-              title: Text('Agenda'),
+              title: const Text('Agenda'),
               onTap: () {
                 Navigator.push(
                     context,

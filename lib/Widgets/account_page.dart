@@ -196,7 +196,14 @@ class AccountHero extends StatelessWidget {
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [const Icon(Icons.star), Text(userRating)],
+        children: [
+          Icon(
+            Icons.star,
+            size: 30,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          Text(userRating)
+        ],
       )
     ]);
   }
