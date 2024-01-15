@@ -1,6 +1,6 @@
-import 'package:buscar/Widgets/Login/google_button.dart';
-import 'package:buscar/Widgets/Login/shrinkeble_button.dart';
-import 'package:buscar/Widgets/Login/underline_text_field.dart';
+import 'package:buscar/widgets/Login/google_button.dart';
+import 'package:buscar/widgets/Login/shrinkeble_button.dart';
+import 'package:buscar/widgets/Login/underline_text_field.dart';
 import 'package:buscar/widgets/Login/custom_filled_button.dart';
 import 'package:buscar/widgets/Login/div.dart';
 import 'package:buscar/widgets/Login/password_text_field.dart';

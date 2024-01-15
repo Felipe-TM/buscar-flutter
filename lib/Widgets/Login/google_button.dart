@@ -1,4 +1,4 @@
-import 'package:buscar/Widgets/Login/shrinkeble_button.dart';
+import 'package:buscar/widgets/Login/shrinkeble_button.dart';
 import 'package:flutter/material.dart';
 
 class GoogleButton extends StatelessWidget {

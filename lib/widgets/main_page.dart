@@ -1,8 +1,8 @@
-import 'package:buscar/Widgets/account_page.dart';
-import 'package:buscar/Widgets/appointments_page.dart';
-import 'package:buscar/Widgets/configuration_page.dart';
-import 'package:buscar/Widgets/history_page.dart';
-import 'package:buscar/Widgets/requests_page.dart';
+import 'package:buscar/widgets/account_page.dart';
+import 'package:buscar/widgets/appointments_page.dart';
+import 'package:buscar/widgets/configuration_page.dart';
+import 'package:buscar/widgets/history_page.dart';
+import 'package:buscar/widgets/requests_page.dart';
 import 'package:buscar/widgets/buscar_title.dart';
 import 'package:flutter/material.dart';
 
