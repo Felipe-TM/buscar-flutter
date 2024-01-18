@@ -64,6 +64,10 @@ class HistoryListTile extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          const Icon(
+            Icons.home,
+            size: 22,
+          ),
           Expanded(
             child: Text(
               'De: $origin',
@@ -86,6 +90,10 @@ class HistoryListTile extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            const Icon(
+              Icons.place,
+              size: 20,
+            ),
             Expanded(
                 child: Text(
               'Para: $destination',
