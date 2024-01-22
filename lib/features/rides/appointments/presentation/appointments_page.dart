@@ -1,5 +1,6 @@
-import 'package:buscar/Widgets/Login/shrinkeble_button.dart';
 import 'package:flutter/material.dart';
+
+import '../../../common_widgets/shrinkeble_button.dart';
 
 class AppointmentsPage extends StatelessWidget {
   const AppointmentsPage({super.key});
