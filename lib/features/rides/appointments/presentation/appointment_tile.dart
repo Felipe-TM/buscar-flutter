@@ -7,6 +7,7 @@ class AppointmentTile extends StatelessWidget {
   final String departureTime;
   final String status;
   final String date;
+  final Function onPressed;
 
   const AppointmentTile({
     super.key,
@@ -15,13 +16,14 @@ class AppointmentTile extends StatelessWidget {
     required this.departureTime,
     required this.status,
     required this.date,
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return ShrinkebleButton(
       shrinkScale: 0.95,
-      onPressed: () {},
+      onPressed: onPressed,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SizedBox(

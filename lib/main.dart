@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter layout demo',
+      title: 'Buscar Alpha Test',
       home: LoginScreen(appVer: appVer),
       theme: ThemeData(
         fontFamily: 'Istok Web',
