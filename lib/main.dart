@@ -1,5 +1,5 @@
+import 'package:buscar/features/authenticate/login/presentation/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'features/authenticate/login/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter layout demo',
-      home: LoginPage(appVer: appVer),
+      home: LoginScreen(appVer: appVer),
       theme: ThemeData(
         fontFamily: 'Istok Web',
         colorScheme: ColorScheme.fromSeed(

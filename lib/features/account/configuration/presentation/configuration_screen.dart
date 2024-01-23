@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ConfigurationPage extends StatelessWidget {
-  const ConfigurationPage({super.key});
+class ConfigurationScreen extends StatelessWidget {
+  const ConfigurationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
