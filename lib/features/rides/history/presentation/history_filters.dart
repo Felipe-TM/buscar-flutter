@@ -27,12 +27,12 @@ class _HistoryFiltersState extends State<HistoryFilters> {
       child: SizedBox(
         height: 100,
         width: MediaQuery.of(context).size.width,
-        child: const Row(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             DatePickerButton(),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text('Até'),
             ),

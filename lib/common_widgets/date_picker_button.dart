@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 class DatePickerButton extends StatefulWidget {
   final Widget? label;
   final Icon icon;
+  final DateTime firstDate = DateTime(2023);
+  final DateTime lastDate = DateTime(2050);
 
-  const DatePickerButton(
-      {super.key, this.label, this.icon = const Icon(Icons.calendar_month)});
+  DatePickerButton({
+    super.key,
+    this.label,
+    this.icon = const Icon(Icons.calendar_month),
+  });
 
   @override
   State<DatePickerButton> createState() => _DatePickerButtonState();
@@ -31,8 +36,8 @@ class _DatePickerButtonState extends State<DatePickerButton> {
         DateTime? newDate = await showDatePicker(
             context: context,
             initialDate: date,
-            firstDate: DateTime(2023),
-            lastDate: DateTime(2050));
+            firstDate: widget.firstDate,
+            lastDate: widget.lastDate);
 
         if (newDate == null) return;
 
