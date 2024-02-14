@@ -1,3 +1,4 @@
+import 'package:buscar/common_widgets/count_display_widget.dart';
 import 'package:buscar/features/account/account_details/presentation/account_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -44,9 +45,11 @@ class HomeScreen extends StatelessWidget {
           Positioned(
             left: 20,
             bottom: 30,
-            child: ActionIconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.chat),
+            child: CountDisplayWidget(
+              child: ActionIconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.chat),
+              ),
             ),
           ),
           Positioned(

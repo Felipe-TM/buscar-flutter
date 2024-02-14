@@ -14,6 +14,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   inner_shadow_widget: ^0.0.3
+  google_maps_flutter: ^2.5.3
 
 dev_dependencies:
   flutter_test:

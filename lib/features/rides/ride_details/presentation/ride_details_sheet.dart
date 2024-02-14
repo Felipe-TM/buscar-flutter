@@ -33,7 +33,7 @@ class RideDetailsSheet extends StatelessWidget {
     return SizedBox.expand(
       child: DraggableScrollableSheet(
         initialChildSize: 0.18,
-        maxChildSize: 0.6,
+        maxChildSize: 0.80,
         minChildSize: 0.18,
         builder: (BuildContext context, ScrollController scrollController) {
           return Container(
