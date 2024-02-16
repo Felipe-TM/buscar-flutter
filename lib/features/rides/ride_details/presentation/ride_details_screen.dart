@@ -9,7 +9,7 @@ class RideDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ride Details'),
+        title: const Text('Detalhes da Corrida'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Stack(children: [

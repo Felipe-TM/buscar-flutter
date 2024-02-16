@@ -1,5 +1,8 @@
 import 'package:buscar/common_widgets/count_display_widget.dart';
+import 'package:buscar/common_widgets/custom_card.dart';
 import 'package:buscar/features/account/account_details/presentation/account_screen.dart';
+import 'package:buscar/features/rides/add_ride/presentation/add_ride_screen.dart';
+import 'package:buscar/features/rides/find_ride/presentation/find_ride_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common_widgets/action_icon_button.dart';
@@ -39,36 +42,93 @@ class HomeScreen extends StatelessWidget {
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          Container(
-            color: Colors.grey,
-          ),
-          Positioned(
-            left: 20,
-            bottom: 30,
-            child: CountDisplayWidget(
-              child: ActionIconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.chat),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                children: [
+                  CustomCard(
+                    color: Colors.blue.shade300,
+                    onPressed: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const FindRideScreen(),
+                        ),
+                      ),
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          'Procurar Carona',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.search_rounded,
+                              size: 42,
+                            ),
+                            Icon(
+                              Icons.arrow_right_alt_rounded,
+                              size: 42,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  CustomCard(
+                    color: Colors.blue,
+                    onPressed: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AddRideScreen(),
+                        ),
+                      ),
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          'Oferecer Carona',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.local_taxi_outlined,
+                              size: 42,
+                            ),
+                            Icon(
+                              Icons.arrow_right_alt_rounded,
+                              size: 42,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ]
+                    .map((widget) => Padding(
+                          padding: EdgeInsets.only(top: 50),
+                          child: widget,
+                        ))
+                    .toList(),
               ),
             ),
           ),
           Positioned(
-            right: 20,
+            left: 25,
             bottom: 30,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: ActionIconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.add),
-                  ),
-                ),
-                ActionIconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.search),
-                ),
-              ],
+            child: CountDisplayWidget(
+              child: ActionIconButton(
+                size: 48,
+                onPressed: () {},
+                icon: const Icon(Icons.chat),
+              ),
             ),
           ),
         ],

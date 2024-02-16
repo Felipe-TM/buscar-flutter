@@ -57,6 +57,10 @@ class RequestTile extends StatelessWidget {
                       height: 80,
                       decoration: const ShapeDecoration(
                           shape: OvalBorder(), color: Colors.grey),
+                      child: const Icon(
+                        Icons.account_circle,
+                        size: 80,
+                      ),
                     ),
                     Text(name),
                     Row(

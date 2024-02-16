@@ -37,8 +37,8 @@ class _DatePickerButtonState extends State<DatePickerButton> {
             context: context,
             initialDate: date,
             firstDate: widget.firstDate,
+            initialEntryMode: DatePickerEntryMode.calendarOnly,
             lastDate: widget.lastDate);
-
         if (newDate == null) return;
 
         setState(() {

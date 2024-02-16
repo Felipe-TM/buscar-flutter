@@ -72,7 +72,11 @@ class AppointmentTile extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: Text(numberOfPassengers),
-                      )
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Icon(Icons.group),
+                      ),
                     ],
                   ),
                   Row(

@@ -1,5 +1,5 @@
+import 'package:buscar/common_widgets/custom_card.dart';
 import 'package:flutter/material.dart';
-import 'request_tile.dart';
 
 class RequestsScreen extends StatelessWidget {
   const RequestsScreen({super.key});
@@ -13,24 +13,67 @@ class RequestsScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 30),
+          padding: const EdgeInsets.all(30),
           child: Center(
             child: Column(
               children: [
-                const RequestTile(
-                  name: 'Felipe T.',
-                  rating: '5.0',
-                  origin: 'Rua Souza Naves, 666',
-                  destination: 'Av. São João, 1001',
-                  departureTime: '18:45',
-                  departureDate: '14/02/2024',
-                  status: 'Pendente',
+                CustomCard(
+                  color: Colors.blue.shade300,
+                  onPressed: () {},
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        'Como Passageiro',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.group,
+                            size: 42,
+                          ),
+                          Icon(
+                            Icons.arrow_right_alt_rounded,
+                            size: 42,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                CustomCard(
+                  color: Colors.blue,
+                  onPressed: () {},
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        'Como Motorista',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.local_taxi,
+                            size: 42,
+                          ),
+                          Icon(
+                            Icons.arrow_right_alt_rounded,
+                            size: 42,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ]
-                  .map((widget) => Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20),
-                        child: widget,
-                      ))
+                  .map(
+                    (widget) => Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: widget,
+                    ),
+                  )
                   .toList(),
             ),
           ),
