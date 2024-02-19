@@ -7,3 +7,4 @@
 /web
 /windows
 /.dart_tool
+android/app/src/main/AndroidManifest.xml
