@@ -27,3 +27,5 @@ flutter:
   uses-material-design: true
   assets:
     - .\lib\assets\google.png
+    - .\lib\assets\json\map_dark_theme.json
+    - .\lib\assets\json\map_light_theme.json
