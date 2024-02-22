@@ -76,11 +76,8 @@ class GoogleMapWidget extends StatefulWidget {
 }
 
 class _GoogleMapWidgetState extends State<GoogleMapWidget> {
-  late String _darkMapStyle =
-      rootBundle.loadString('assets\json\map_dark_theme.json').toString();
-  late String _lightMapStyle =
-      rootBundle.loadString('assets\json\map_dark_theme.json').toString();
-  late String _currentMapStyle;
+  String? _darkMapStyle;
+  String? _lightMapStyle;
 
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
@@ -91,20 +88,30 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
 
   @override
   void initState() {
+    _loadDarkStyle();
+    _loadLightStyle();
     super.initState();
+  }
+
+  Future _loadDarkStyle() async {
+    _darkMapStyle = await DefaultAssetBundle.of(context)
+        .loadString('lib/assets/json/map_dark_theme.json');
+  }
+
+  Future _loadLightStyle() async {
+    _lightMapStyle = await DefaultAssetBundle.of(context)
+        .loadString('lib/assets/json/map_light_theme.json');
   }
 
   @override
   Widget build(BuildContext context) {
-    (Theme.of(context).brightness == Brightness.dark)
-        ? _currentMapStyle = _darkMapStyle
-        : _currentMapStyle = _lightMapStyle;
-
     return GoogleMap(
       mapType: MapType.normal,
       initialCameraPosition: initialPos,
       onMapCreated: (GoogleMapController controller) {
-        controller.setMapStyle(_currentMapStyle);
+        (Theme.of(context).brightness == Brightness.dark)
+            ? controller.setMapStyle(_darkMapStyle)
+            : controller.setMapStyle(_lightMapStyle);
         _controller.complete(controller);
       },
     );
