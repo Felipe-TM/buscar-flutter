@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'dart:async';
 
 class GoogleMapWidget extends StatefulWidget {
@@ -18,7 +20,8 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
 
   static const CameraPosition initialPos = CameraPosition(
       target: LatLng(-23.316321971739562, -51.17272870369577),
-      zoom: 15.151926040649414);
+      zoom: 15.151926040649414,
+      tilt: 85.0);
 
   @override
   void initState() {
@@ -41,6 +44,11 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
   Widget build(BuildContext context) {
     return GoogleMap(
       mapType: MapType.normal,
+      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+        Factory<OneSequenceGestureRecognizer>(
+          () => EagerGestureRecognizer(),
+        ),
+      },
       initialCameraPosition: initialPos,
       onMapCreated: (GoogleMapController controller) {
         (Theme.of(context).brightness == Brightness.dark)

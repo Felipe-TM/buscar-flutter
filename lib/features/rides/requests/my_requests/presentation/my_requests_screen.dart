@@ -1,8 +1,6 @@
 import 'package:buscar/features/rides/requests/my_requests/presentation/request_tile.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../common_widgets/skeleton.dart';
-
 class MyRequestsScreen extends StatelessWidget {
   const MyRequestsScreen({super.key});
 
