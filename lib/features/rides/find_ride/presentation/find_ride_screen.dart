@@ -15,8 +15,66 @@ class FindRideScreen extends StatelessWidget {
         title: const Text('Procurando Carona'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: const GoogleMapWidget(),
+      body: Stack(
+        children: [
+          Container(
+            color: Colors.black,
+          ),
+          Container(
+            color: Theme.of(context).colorScheme.background,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const LocationInputWidget(
+                    icon: Icons.home,
+                    hint: 'De onde?',
+                  ),
+                  const LocationInputWidget(
+                    hint: 'Para onde?',
+                  ),
+                ]
+                    .map((widget) => Padding(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                          child: widget,
+                        ))
+                    .toList(),
+              ),
+            ),
+          )
+        ],
+      ),
       bottomNavigationBar: RideBottomNavBar(),
+    );
+  }
+}
+
+class LocationInputWidget extends StatelessWidget {
+  final IconData icon;
+  final String hint;
+
+  const LocationInputWidget(
+      {super.key, this.icon = Icons.location_on_outlined, required this.hint});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      style: TextStyle(
+        color: Theme.of(context).colorScheme.onBackground,
+      ),
+      decoration: InputDecoration(
+        hintText: hint,
+        prefixIcon: Icon(
+          icon,
+          color: Theme.of(context).colorScheme.onBackground,
+        ),
+        border: const OutlineInputBorder(
+          gapPadding: 5,
+          borderSide: BorderSide(color: Colors.black, width: 2),
+        ),
+      ),
     );
   }
 }
