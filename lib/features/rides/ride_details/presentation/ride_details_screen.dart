@@ -1,3 +1,4 @@
+import 'package:buscar/common_widgets/google_map_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'ride_details_sheet.dart';
@@ -12,11 +13,9 @@ class RideDetailsScreen extends StatelessWidget {
         title: const Text('Detalhes da Corrida'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Stack(children: [
-        Container(
-          color: Colors.grey,
-        ),
-        const RideDetailsSheet(
+      body: const Stack(children: [
+        GoogleMapWidget(),
+        RideDetailsSheet(
           origin: 'R. Sen. Souza Naves, 2883',
           destination: 'Av. Me. Leônia Milito, 123',
           departureTime: '17:32',

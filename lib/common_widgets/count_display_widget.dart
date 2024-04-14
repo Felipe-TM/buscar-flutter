@@ -22,15 +22,15 @@ class _CountDisplayWidgetState extends State<CountDisplayWidget> {
           right: 3,
           bottom: -3,
           child: Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.error,
+            decoration: const BoxDecoration(
+              color: Colors.red,
               shape: BoxShape.circle,
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text(
                 '2',
-                style: TextStyle(color: Theme.of(context).colorScheme.onError),
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ),

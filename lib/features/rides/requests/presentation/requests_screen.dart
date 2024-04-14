@@ -1,4 +1,6 @@
 import 'package:buscar/common_widgets/custom_card.dart';
+import 'package:buscar/features/rides/requests/accept_passanger/presentation/accept_passanger_screen.dart';
+import 'package:buscar/features/rides/requests/my_requests/presentation/my_requests_screen.dart';
 import 'package:flutter/material.dart';
 
 class RequestsScreen extends StatelessWidget {
@@ -19,12 +21,18 @@ class RequestsScreen extends StatelessWidget {
               children: [
                 CustomCard(
                   color: Colors.blue.shade300,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const AcceptPassangerScreen()));
+                  },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        'Como Passageiro',
+                        'Aceitar Passageiros',
                         style: TextStyle(fontSize: 20),
                       ),
                       Row(
@@ -44,12 +52,17 @@ class RequestsScreen extends StatelessWidget {
                 ),
                 CustomCard(
                   color: Colors.blue,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyRequestsScreen()));
+                  },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        'Como Motorista',
+                        'Minhas solicitações',
                         style: TextStyle(fontSize: 20),
                       ),
                       Row(
