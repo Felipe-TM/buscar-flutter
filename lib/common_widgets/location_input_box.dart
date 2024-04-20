@@ -2,7 +2,17 @@ import 'package:buscar/common_widgets/location_input_field.dart';
 import 'package:flutter/material.dart';
 
 class LocationInputBox extends StatelessWidget {
-  const LocationInputBox({super.key});
+  final TextEditingController? originController;
+  final TextEditingController? destinationController;
+  final FocusNode? originFocusNode;
+  final FocusNode? destinationFocusNode;
+
+  const LocationInputBox(
+      {super.key,
+      this.originController,
+      this.destinationController,
+      this.originFocusNode,
+      this.destinationFocusNode});
 
   @override
   Widget build(BuildContext context) {
@@ -13,16 +23,23 @@ class LocationInputBox extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const LocationInputField(
+            LocationInputField(
+              key: const Key('origin'),
+              focusNode: originFocusNode,
               icon: Icons.home,
               hint: 'De onde?',
+              controller: originController,
             ),
-            const LocationInputField(
+            LocationInputField(
+              key: const Key('destination'),
+              focusNode: destinationFocusNode,
               hint: 'Para onde?',
+              controller: destinationController,
             ),
           ]
               .map((widget) => Padding(
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                     child: widget,
                   ))
               .toList(),

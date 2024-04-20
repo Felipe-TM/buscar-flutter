@@ -111,14 +111,16 @@ class FindRidePage4 extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           NavigationButton(
-                            onTap: onBack,
+                            onTap: () {
+                              DefaultTabController.of(context).animateTo(2);
+                            },
                             content: const Row(children: [
                               Icon(Icons.arrow_back),
                               Text('Voltar')
                             ]),
                           ),
                           NavigationButton(
-                            onTap: onBack,
+                            onTap: () {},
                             content: const Row(children: [
                               Text('Solicitar'),
                             ]),

@@ -1,7 +1,7 @@
-import 'package:buscar/common_widgets/google_map_widget.dart';
 import 'package:flutter/material.dart';
 import 'find_ride_page1.dart';
 import 'find_ride_page2.dart';
+import 'find_ride_page3.dart';
 import 'find_ride_page4.dart';
 
 class FindRideScreen extends StatelessWidget {
@@ -17,21 +17,14 @@ class FindRideScreen extends StatelessWidget {
             title: const Text('Procurando Carona'),
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
-              const FindRidePage1(),
+              FindRidePage1(),
               SingleChildScrollView(
-                child: FindRidePage2(
-                  onBack: () {
-                    DefaultTabController.of(context).animateTo(0);
-                  },
-                  onNext: () {
-                    DefaultTabController.of(context).animateTo(2);
-                  },
-                ),
+                child: FindRidePage2(),
               ),
-              const FindRidePage3(),
-              const FindRidePage4(
+              FindRidePage3(),
+              FindRidePage4(
                 origin: 'R. Sen. Souza Naves, 2883',
                 destination: 'Av. Me. Leônia Milito, 123',
                 departureTime: '17:32',
@@ -61,14 +54,5 @@ class FindRideScreen extends StatelessWidget {
         );
       }),
     );
-  }
-}
-
-class FindRidePage3 extends StatelessWidget {
-  const FindRidePage3({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const GoogleMapWidget();
   }
 }

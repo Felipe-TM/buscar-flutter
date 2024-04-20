@@ -13,9 +13,11 @@ class RideDetailsScreen extends StatelessWidget {
         title: const Text('Detalhes da Corrida'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: const Stack(children: [
-        GoogleMapWidget(),
-        RideDetailsSheet(
+      body: Stack(children: [
+        GoogleMapWidget(
+          markers: Set(),
+        ),
+        const RideDetailsSheet(
           origin: 'R. Sen. Souza Naves, 2883',
           destination: 'Av. Me. Leônia Milito, 123',
           departureTime: '17:32',

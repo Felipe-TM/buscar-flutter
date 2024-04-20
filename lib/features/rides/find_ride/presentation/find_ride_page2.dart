@@ -5,18 +5,28 @@ import 'package:flutter/material.dart';
 
 import '../../../../common_widgets/navigation_button.dart';
 
-class FindRidePage2 extends StatelessWidget {
+class FindRidePage2 extends StatefulWidget {
   final String origin;
   final String destination;
-  final Function()? onNext;
-  final Function()? onBack;
 
-  const FindRidePage2(
-      {super.key,
-      this.origin = '',
-      this.destination = '',
-      this.onNext,
-      this.onBack});
+  const FindRidePage2({
+    super.key,
+    this.origin = '',
+    this.destination = '',
+  });
+
+  @override
+  State<FindRidePage2> createState() => _FindRidePage2State();
+}
+
+class _FindRidePage2State extends State<FindRidePage2> {
+  late double _searchRadius;
+
+  @override
+  void initState() {
+    _searchRadius = 1000;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +67,37 @@ class FindRidePage2 extends StatelessWidget {
                   ),
                 ],
               ),
+              Padding(
+                padding: const EdgeInsets.only(top: 25),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Area de Busca:'),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Slider(
+                              value: _searchRadius,
+                              min: 500,
+                              max: 8500,
+                              divisions: 4,
+                              label: '$_searchRadius',
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _searchRadius = newValue;
+                                });
+                              },
+                            ),
+                          ),
+                          Text('$_searchRadius m')
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ]
                 .map((widget) => Padding(
                       padding: const EdgeInsets.only(top: 20),
@@ -69,12 +110,16 @@ class FindRidePage2 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             NavigationButton(
-              onTap: onBack,
+              onTap: () {
+                DefaultTabController.of(context).animateTo(0);
+              },
               content:
                   const Row(children: [Icon(Icons.arrow_back), Text('Voltar')]),
             ),
             NavigationButton(
-              onTap: onNext,
+              onTap: () {
+                DefaultTabController.of(context).animateTo(2);
+              },
               content: const Row(
                   children: [Text('Proximo'), Icon(Icons.arrow_forward)]),
             ),

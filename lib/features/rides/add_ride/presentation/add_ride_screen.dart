@@ -15,7 +15,9 @@ class _AddRideScreenState extends State<AddRideScreen>
 
   @override
   void initState() {
-    mapWidget = const GoogleMapWidget();
+    mapWidget = GoogleMapWidget(
+      markers: Set(),
+    );
     _tabController = TabController(length: 3, vsync: this);
     super.initState();
   }

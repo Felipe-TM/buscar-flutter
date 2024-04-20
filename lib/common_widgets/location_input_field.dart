@@ -3,19 +3,23 @@ import 'package:flutter/material.dart';
 class LocationInputField extends StatelessWidget {
   final IconData icon;
   final String hint;
-  final String initialValue;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
 
   const LocationInputField(
       {super.key,
       this.icon = Icons.location_on_outlined,
       required this.hint,
-      this.initialValue = ''});
+      this.controller,
+      this.focusNode});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 40,
       child: TextFormField(
+        focusNode: focusNode,
+        controller: controller,
         style: TextStyle(
           color: Theme.of(context).colorScheme.onBackground,
         ),
