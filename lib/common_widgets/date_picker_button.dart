@@ -5,11 +5,13 @@ class DatePickerButton extends StatefulWidget {
   final Icon icon;
   final DateTime firstDate = DateTime(2023);
   final DateTime lastDate = DateTime(2050);
+  final Function(DateTime)? getDate;
 
   DatePickerButton({
     super.key,
     this.label,
     this.icon = const Icon(Icons.calendar_month),
+    this.getDate,
   });
 
   @override
@@ -43,6 +45,7 @@ class _DatePickerButtonState extends State<DatePickerButton> {
 
         setState(() {
           date = newDate;
+          widget.getDate!(date);
         });
       },
       child: Row(

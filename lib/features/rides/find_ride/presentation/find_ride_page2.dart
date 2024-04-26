@@ -2,17 +2,14 @@ import 'package:buscar/common_widgets/date_picker_button.dart';
 import 'package:buscar/common_widgets/location_input_box.dart';
 import 'package:buscar/common_widgets/time_picker_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common_widgets/navigation_button.dart';
+import '../model/find_ride_model.dart';
 
 class FindRidePage2 extends StatefulWidget {
-  final String origin;
-  final String destination;
-
   const FindRidePage2({
     super.key,
-    this.origin = '',
-    this.destination = '',
   });
 
   @override
@@ -20,11 +17,15 @@ class FindRidePage2 extends StatefulWidget {
 }
 
 class _FindRidePage2State extends State<FindRidePage2> {
+  late TextEditingController _originController;
+  late TextEditingController _destinationController;
   late double _searchRadius;
 
   @override
   void initState() {
     _searchRadius = 1000;
+    _originController = TextEditingController();
+    _destinationController = TextEditingController();
     super.initState();
   }
 
@@ -32,7 +33,19 @@ class _FindRidePage2State extends State<FindRidePage2> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const LocationInputBox(),
+        Consumer<FindRideModel>(
+          builder:
+              (BuildContext context, FindRideModel rideModel, Widget? child) {
+            _originController.value =
+                TextEditingValue(text: rideModel.getOrigin);
+            _destinationController.value =
+                TextEditingValue(text: rideModel.getDestination);
+            return LocationInputBox(
+              originController: _originController,
+              destinationController: _destinationController,
+            );
+          },
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 45),
           child: Column(
@@ -41,29 +54,48 @@ class _FindRidePage2State extends State<FindRidePage2> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text('Selecione a data:'),
-                  DatePickerButton(),
+                  DatePickerButton(
+                    getDate: (date) {
+                      Provider.of<FindRideModel>(context, listen: false)
+                          .setDate = date;
+                    },
+                  ),
                 ],
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Horario de saida:'),
-                  TimePickerButton(),
+                  TimePickerButton(
+                    getTime: (time) {
+                      Provider.of<FindRideModel>(context, listen: false)
+                          .setDepartureTime = time;
+                    },
+                  ),
                 ],
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Horario de Chegada:'),
-                  TimePickerButton(),
+                  TimePickerButton(
+                    getTime: (time) {
+                      Provider.of<FindRideModel>(context, listen: false)
+                          .setArrivalTime = time;
+                    },
+                  ),
                 ],
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Janela de Tempo:'),
                   TimePickerButton(
                     time: TimeOfDay(hour: 0, minute: 10),
+                    getTime: (time) {
+                      Provider.of<FindRideModel>(context, listen: false)
+                          .setTimeWindow = time;
+                    },
                   ),
                 ],
               ),
@@ -87,6 +119,9 @@ class _FindRidePage2State extends State<FindRidePage2> {
                               onChanged: (newValue) {
                                 setState(() {
                                   _searchRadius = newValue;
+                                  Provider.of<FindRideModel>(context,
+                                          listen: false)
+                                      .setSearchRadius = _searchRadius;
                                 });
                               },
                             ),

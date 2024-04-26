@@ -2,9 +2,11 @@ import 'package:buscar/common_widgets/google_map_widget.dart';
 import 'package:buscar/common_widgets/location_input_box.dart';
 import 'package:buscar/common_widgets/navigation_button.dart';
 import 'package:buscar/common_widgets/widget_to_map_icon.dart';
+import 'package:buscar/features/rides/find_ride/model/find_ride_model.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
 class FindRidePage1 extends StatefulWidget {
   const FindRidePage1({
@@ -21,6 +23,8 @@ class _FindRidePage1State extends State<FindRidePage1> {
   late TextEditingController _destinationController;
   late FocusNode _originFocusNode;
   late FocusNode _destinationFocusNode;
+  late LatLng originCoord;
+  late LatLng destinationCoord;
 
   @override
   void initState() {
@@ -58,6 +62,7 @@ class _FindRidePage1State extends State<FindRidePage1> {
           },
         ),
       );
+      originCoord = coord;
       await placemarkFromCoordinates(coord.latitude, coord.longitude).then(
         (List<Placemark> placemarks) {
           Placemark place = placemarks[0];
@@ -83,6 +88,7 @@ class _FindRidePage1State extends State<FindRidePage1> {
           },
         ),
       );
+      destinationCoord = coord;
       await placemarkFromCoordinates(coord.latitude, coord.longitude).then(
         (List<Placemark> placemarks) {
           Placemark place = placemarks[0];
@@ -118,7 +124,27 @@ class _FindRidePage1State extends State<FindRidePage1> {
             width: 120,
             child: NavigationButton(
                 onTap: () {
-                  DefaultTabController.of(context).animateTo(1);
+                  try {
+                    Provider.of<FindRideModel>(context, listen: false)
+                        .setOrigin = _originController.value.text;
+                    Provider.of<FindRideModel>(context, listen: false)
+                        .setDestination = _destinationController.value.text;
+                    Provider.of<FindRideModel>(context, listen: false)
+                        .setOriginCoord = originCoord;
+                    Provider.of<FindRideModel>(context, listen: false)
+                        .setDestinationCoord = destinationCoord;
+                    DefaultTabController.of(context).animateTo(1);
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: Theme.of(context).colorScheme.error,
+                      duration: const Duration(seconds: 8),
+                      content: Text(
+                        'Adicione os pontos de partida e destino antes de continuar...',
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.onError),
+                      ),
+                    ));
+                  }
                 },
                 content: const Row(
                   children: [Text('Proximo'), Icon(Icons.arrow_forward)],

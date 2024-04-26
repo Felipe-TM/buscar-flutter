@@ -1,5 +1,7 @@
 import 'package:buscar/common_widgets/location_input_field.dart';
+import 'package:buscar/features/rides/find_ride/model/find_ride_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LocationInputBox extends StatelessWidget {
   final TextEditingController? originController;
@@ -23,18 +25,28 @@ class LocationInputBox extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            LocationInputField(
-              key: const Key('origin'),
-              focusNode: originFocusNode,
-              icon: Icons.home,
-              hint: 'De onde?',
-              controller: originController,
+            Consumer<FindRideModel>(
+              builder: (BuildContext context, FindRideModel rideModel,
+                  Widget? child) {
+                return LocationInputField(
+                  key: const Key('origin'),
+                  focusNode: originFocusNode,
+                  icon: Icons.home,
+                  hint: 'De onde?',
+                  controller: originController,
+                );
+              },
             ),
-            LocationInputField(
-              key: const Key('destination'),
-              focusNode: destinationFocusNode,
-              hint: 'Para onde?',
-              controller: destinationController,
+            Consumer<FindRideModel>(
+              builder: (BuildContext context, FindRideModel rideModel,
+                  Widget? child) {
+                return LocationInputField(
+                  key: const Key('destination'),
+                  focusNode: destinationFocusNode,
+                  hint: 'Para onde?',
+                  controller: destinationController,
+                );
+              },
             ),
           ]
               .map((widget) => Padding(

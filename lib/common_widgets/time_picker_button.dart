@@ -4,12 +4,14 @@ class TimePickerButton extends StatefulWidget {
   final Widget? label;
   final Icon icon;
   final TimeOfDay? time;
+  final Function(TimeOfDay)? getTime;
 
   const TimePickerButton(
       {super.key,
       this.label,
       this.icon = const Icon(Icons.av_timer),
-      this.time});
+      this.time,
+      this.getTime});
 
   @override
   State<TimePickerButton> createState() => _TimePickerButtonState();
@@ -17,7 +19,6 @@ class TimePickerButton extends StatefulWidget {
 
 class _TimePickerButtonState extends State<TimePickerButton> {
   TimeOfDay time = TimeOfDay.now();
-
   @override
   Widget build(BuildContext context) {
     if (widget.time != null) time = widget.time!;
@@ -46,9 +47,9 @@ class _TimePickerButtonState extends State<TimePickerButton> {
           },
         );
         if (newTime == null) return;
-
         setState(() {
           time = newTime;
+          widget.getTime!(time);
         });
       },
       child: Row(

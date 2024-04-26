@@ -126,7 +126,14 @@ class HomeScreen extends StatelessWidget {
             child: CountDisplayWidget(
               child: ActionIconButton(
                 size: 48,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyWidget(),
+                    ),
+                  );
+                },
                 icon: const Icon(Icons.chat),
               ),
             ),
@@ -151,6 +158,20 @@ class LeadingIcon extends StatelessWidget {
         Scaffold.of(context).openDrawer();
       },
       icon: const Icon(Icons.menu_rounded),
+    );
+  }
+}
+
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Chat'),
+        backgroundColor: Theme.of(context).colorScheme.tertiary,
+      ),
     );
   }
 }
