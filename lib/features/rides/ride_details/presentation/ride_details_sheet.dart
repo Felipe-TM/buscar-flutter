@@ -45,13 +45,13 @@ class RideDetailsSheet extends StatelessWidget {
                 boxShadow: const [
                   BoxShadow(color: Colors.black38, blurRadius: 5)
                 ]),
-            child: Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: SingleChildScrollView(
-                    controller: scrollController,
+            child: SingleChildScrollView(
+              controller: scrollController,
+              child: Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 20),
@@ -147,17 +147,17 @@ class RideDetailsSheet extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: SizedBox(
-                    height: 4,
-                    width: 60,
-                    child: Container(
-                        color: Theme.of(context).colorScheme.onBackground),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: SizedBox(
+                      height: 4,
+                      width: 60,
+                      child: Container(
+                          color: Theme.of(context).colorScheme.onBackground),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
