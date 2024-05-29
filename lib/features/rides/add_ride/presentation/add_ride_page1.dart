@@ -8,16 +8,16 @@ import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
-class FindRidePage1 extends StatefulWidget {
-  const FindRidePage1({
+class AddRidePage1 extends StatefulWidget {
+  const AddRidePage1({
     super.key,
   });
 
   @override
-  State<FindRidePage1> createState() => _FindRidePage1State();
+  State<AddRidePage1> createState() => _AddRidePage1State();
 }
 
-class _FindRidePage1State extends State<FindRidePage1> {
+class _AddRidePage1State extends State<AddRidePage1> {
   late Set<Marker> _markers;
   late TextEditingController _originController;
   late TextEditingController _destinationController;

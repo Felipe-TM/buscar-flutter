@@ -12,6 +12,10 @@ class RideDetailsModel extends ChangeNotifier {
   late String arrivalTime = '';
   late String status = '';
   late String numberOfPassangers = '';
+  late String driverName = '';
+  late String carModel = '';
+  late String carPlate = '';
+  late String carManufacturer = '';
 
   RideDetailsModel({
     required this.rideId,
@@ -75,6 +79,34 @@ class RideDetailsModel extends ChangeNotifier {
 
   set setArrivalTime(String arrivalTime) {
     this.arrivalTime = arrivalTime;
+    notifyListeners();
+  }
+
+  get getDriverName => driverName;
+
+  set setDrivername(String driverName) {
+    this.driverName = driverName;
+    notifyListeners();
+  }
+
+  get getCarModel => carModel;
+
+  set setCarModel(String carModel) {
+    this.carModel = carModel;
+    notifyListeners();
+  }
+
+  get getCarPlate => carPlate;
+
+  set setCarPlate(String carPlate) {
+    this.carPlate = carPlate;
+    notifyListeners();
+  }
+
+  get getCarManufacturer => carManufacturer;
+
+  set setCarManufacturer(String carManufacturer) {
+    this.carManufacturer = carManufacturer;
     notifyListeners();
   }
 }

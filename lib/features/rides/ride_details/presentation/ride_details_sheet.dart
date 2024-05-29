@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../common_widgets/count_display_widget.dart';
 
-class RideDetailsSheet extends StatelessWidget {
-  final TextStyle textStyle = const TextStyle(fontSize: 15);
+class RideDetailsSheet extends StatefulWidget {
   final String origin;
   final String destination;
   final String departureTime;
@@ -27,6 +26,20 @@ class RideDetailsSheet extends StatelessWidget {
       required this.carModel,
       required this.carManufacturer,
       required this.carPlate});
+
+  @override
+  State<RideDetailsSheet> createState() => _RideDetailsSheetState();
+}
+
+class _RideDetailsSheetState extends State<RideDetailsSheet> {
+  final TextStyle textStyle = const TextStyle(fontSize: 15);
+  late bool isDriverView;
+
+  @override
+  void initState() {
+    isDriverView = true;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,19 +72,19 @@ class RideDetailsSheet extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'De: $origin',
+                            'De: ${widget.origin}',
                             style: textStyle,
                           ),
                           Text(
-                            'Para: $destination',
+                            'Para: ${widget.destination}',
                             style: textStyle,
                           ),
                           Text(
-                            'Saída: $departureTime',
+                            'Saída: ${widget.departureTime}',
                             style: textStyle,
                           ),
                           Text(
-                            'Chegada (Previsão): $arrivalTime',
+                            'Chegada (Previsão): ${widget.arrivalTime}',
                             style: textStyle,
                           ),
                           Row(
@@ -96,45 +109,62 @@ class RideDetailsSheet extends StatelessWidget {
                             ],
                           ),
                           Text(
-                            'Motorista: $driverName',
+                            'Motorista: ${widget.driverName}',
                             style: textStyle,
                           ),
                           Text(
-                            'Carro: $carManufacturer $carModel',
+                            'Carro: ${widget.carManufacturer} ${widget.carModel}',
                             style: textStyle,
                           ),
                           Text(
-                            'Placa: $carPlate',
+                            'Placa: ${widget.carPlate}',
                             style: textStyle,
                           ),
                           Text(
-                            'Status: $rideStatus',
+                            'Status: ${widget.rideStatus}',
                             style: textStyle,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(20.0),
-                            child: Row(
-                              children: [
-                                CountDisplayWidget(
-                                  child: ActionIconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(Icons.chat_outlined),
-                                    size: 42,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 25),
-                                  child: CountDisplayWidget(
-                                    child: ActionIconButton(
-                                      onPressed: () {},
-                                      icon:
-                                          const Icon(Icons.people_alt_rounded),
-                                      size: 42,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
+                            child: Builder(builder: (context) {
+                              return isDriverView
+                                  ? Row(
+                                      children: [
+                                        CountDisplayWidget(
+                                          child: ActionIconButton(
+                                            onPressed: () {},
+                                            icon:
+                                                const Icon(Icons.chat_outlined),
+                                            size: 42,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 25),
+                                          child: CountDisplayWidget(
+                                            child: ActionIconButton(
+                                              onPressed: () {},
+                                              icon: const Icon(
+                                                  Icons.people_alt_rounded),
+                                              size: 42,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  : Row(
+                                      children: [
+                                        CountDisplayWidget(
+                                          child: ActionIconButton(
+                                            onPressed: () {},
+                                            icon:
+                                                const Icon(Icons.chat_outlined),
+                                            size: 42,
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                            }),
                           )
                         ]
                             .map(

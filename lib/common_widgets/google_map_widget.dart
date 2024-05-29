@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:async';
 
+import 'loading_widget.dart';
+
 class GoogleMapWidget extends StatefulWidget {
   final Set<Marker> markers;
   final Function(LatLng)? onTap;
@@ -113,18 +115,7 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget>
   @override
   Widget build(BuildContext context) {
     while (isLoading) {
-      return Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Center(
-            child: CircularProgressIndicator(
-              strokeCap: StrokeCap.round,
-              value: controller.value,
-              semanticsLabel: 'Circular progress indicator',
-            ),
-          ),
-        ),
-      );
+      return LoadingWidget(controller: controller);
     }
 
     return (userCurrentPos != null)

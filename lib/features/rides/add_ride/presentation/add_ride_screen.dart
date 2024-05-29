@@ -1,5 +1,11 @@
 import 'package:buscar/common_widgets/google_map_widget.dart';
+import 'package:buscar/features/rides/add_ride/presentation/add_ride_page1.dart';
+import 'package:buscar/features/rides/add_ride/presentation/add_ride_page2.dart';
+import 'package:buscar/features/rides/add_ride/presentation/add_ride_page3.dart';
+import 'package:buscar/features/rides/add_ride/presentation/add_ride_page4.dart';
+import 'package:buscar/features/rides/ride_model/ride_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddRideScreen extends StatefulWidget {
   const AddRideScreen({super.key});
@@ -37,12 +43,29 @@ class _AddRideScreenState extends State<AddRideScreen>
           title: const Text('Oferecer Carona'),
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         ),
-        body: TabBarView(
-          children: [
-            mapWidget,
-            Page2(),
-            Page3(),
-          ],
+        body: ChangeNotifierProvider<RideModel>(
+          create: (context) => RideModel(),
+          child: const TabBarView(
+            physics: NeverScrollableScrollPhysics(),
+            children: [
+              AddRidePage1(),
+              SingleChildScrollView(
+                child: AddRidePage2(),
+              ),
+              AddRidePage3(),
+              AddRidePage4(
+                origin: 'R. Sen. Souza Naves, 2883',
+                destination: 'Av. Me. Leônia Milito, 123',
+                departureTime: '17:32',
+                arrivalTime: '18:45',
+                rideStatus: 'Em Andamento',
+                driverName: 'Bruno',
+                carModel: 'Fox',
+                carManufacturer: 'VW',
+                carPlate: '8HK26S',
+              ),
+            ],
+          ),
         ),
         bottomNavigationBar: const TabBar(tabs: [
           Tab(

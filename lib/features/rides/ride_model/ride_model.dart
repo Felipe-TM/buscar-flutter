@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class FindRideModel extends ChangeNotifier {
+class RideModel extends ChangeNotifier {
   late String origin = '';
   late String destination = '';
   late LatLng originCoord;

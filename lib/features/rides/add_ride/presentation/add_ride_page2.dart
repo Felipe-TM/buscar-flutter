@@ -7,16 +7,16 @@ import 'package:provider/provider.dart';
 
 import '../../../../common_widgets/navigation_button.dart';
 
-class FindRidePage2 extends StatefulWidget {
-  const FindRidePage2({
+class AddRidePage2 extends StatefulWidget {
+  const AddRidePage2({
     super.key,
   });
 
   @override
-  State<FindRidePage2> createState() => _FindRidePage2State();
+  State<AddRidePage2> createState() => _AddRidePage2State();
 }
 
-class _FindRidePage2State extends State<FindRidePage2> {
+class _AddRidePage2State extends State<AddRidePage2> {
   late TextEditingController _originController;
   late TextEditingController _destinationController;
   late double _searchRadius;

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 class UnderlineTextField extends StatefulWidget {
   final String label;
+  final TextEditingController? controller;
+  final TextInputType? keyboardType;
 
-  const UnderlineTextField({super.key, required this.label});
+  const UnderlineTextField(
+      {super.key, required this.label, this.controller, this.keyboardType});
 
   @override
   State<UnderlineTextField> createState() => _UnderlineTextFieldState();
@@ -15,6 +18,8 @@ class _UnderlineTextFieldState extends State<UnderlineTextField> {
     Color color = Theme.of(context).colorScheme.inversePrimary;
     return TextField(
         cursorColor: color,
+        controller: widget.controller,
+        keyboardType: widget.keyboardType,
         decoration: InputDecoration(
             enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: color, width: 2.0)),
