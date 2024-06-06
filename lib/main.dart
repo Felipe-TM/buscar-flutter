@@ -1,5 +1,7 @@
+import 'package:buscar/features/account/account_details/repository/account_repository.dart';
 import 'package:buscar/features/account/configuration/model/config_model.dart';
 import 'package:buscar/features/authenticate/login/presentation/login_screen.dart';
+import 'package:buscar/features/rides/ride_repository/ride_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,20 +12,32 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  final String appVer = 'a1.0.0';
-
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ConfigurationModel>(
-      create: (BuildContext context) {
-        return ConfigurationModel();
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ConfigurationModel>(
+          create: (BuildContext context) {
+            return ConfigurationModel();
+          },
+        ),
+        ChangeNotifierProvider<AccountRepository>(
+          create: (BuildContext context) {
+            return FakeAccRepo();
+          },
+        ),
+        ChangeNotifierProvider<RideRepository>(
+          create: (BuildContext context) {
+            return FakeRideRepo();
+          },
+        ),
+      ],
       child: Consumer<ConfigurationModel>(
         builder:
             (BuildContext context, ConfigurationModel model, Widget? child) {
           return MaterialApp(
             title: 'Buscar Alpha Test',
-            home: LoginScreen(appVer: appVer),
+            home: LoginScreen(appVer: model.appVer),
             theme: model.getThemeMode
                 ? ThemeData(
                     fontFamily: 'Istok Web',

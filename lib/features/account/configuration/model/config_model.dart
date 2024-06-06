@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ConfigurationModel extends ChangeNotifier {
+  final String appVer = 'a1.0.0';
   late bool themeMode = true;
 
   get getThemeMode => this.themeMode;

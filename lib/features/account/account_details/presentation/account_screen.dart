@@ -21,11 +21,19 @@ class _AccountScreenState extends State<AccountScreen>
   late AccountModel accountModel;
   late AnimationController controller;
   late bool isLoading = true;
-  late AccountRepository repository;
+
+  TextEditingController carManufacturer = TextEditingController();
+  TextEditingController carModel = TextEditingController();
+  TextEditingController carYear = TextEditingController();
+  TextEditingController carPlate = TextEditingController();
+  TextEditingController carColor = TextEditingController();
+
+  TextEditingController fullName = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController phoneNumber = TextEditingController();
 
   @override
   void initState() {
-    repository = FakeRepo();
     controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 1),
@@ -33,19 +41,26 @@ class _AccountScreenState extends State<AccountScreen>
         setState(() {});
       });
     controller.repeat(reverse: false);
-    getAccount();
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    getAccount();
+    super.didChangeDependencies();
+  }
+
+  void getAccount() async {
+    accountModel = Provider.of<AccountRepository>(context).getAccountDetails();
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
   void dispose() {
     controller.dispose();
     super.dispose();
-  }
-
-  void getAccount() async {
-    accountModel = await repository.getAccountDetails('');
-    isLoading = false;
   }
 
   @override
@@ -62,202 +77,195 @@ class _AccountScreenState extends State<AccountScreen>
         return SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
-            child: ChangeNotifierProvider<AccountModel>(
-              create: (BuildContext context) {
-                return accountModel;
-              },
-              child: Builder(builder: (context) {
-                return Consumer<AccountModel>(
-                  builder: (BuildContext context, AccountModel model,
-                      Widget? child) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AccountHero(
-                          userRating: model.getUserRating,
-                          userName: model.getUserName,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 40, left: 25),
-                          child: AccountDetails(
-                              fullLegalName: model.getFullLegalName,
-                              email: model.getEmail,
-                              phoneNumber: model.getPhoneNumber),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Center(
-                            child: OutlinedButton.icon(
-                                onPressed: () => _changeUserDetails(context),
-                                icon: const Icon(Icons.edit),
-                                label: const Text('Editar')),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 40),
-                          child: VehicleDetails(
-                            manufacturer: model.getCarManufacturer,
-                            model: model.getCarModel,
-                            modelYear: model.getCarModelYear,
-                            plate: model.getCarPlate,
-                            color: model.carColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Center(
-                            child: OutlinedButton.icon(
-                                onPressed: () => _changeVehicleDetails(context),
-                                icon: const Icon(Icons.edit),
-                                label: const Text('Editar')),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
+            child: Consumer<AccountRepository>(
+              builder: (BuildContext context, AccountRepository repository,
+                  Widget? child) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AccountHero(
+                      userRating: accountModel.getUserRating,
+                      userName: accountModel.getUserName,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40, left: 25),
+                      child: AccountDetails(
+                          fullLegalName: accountModel.getFullLegalName,
+                          email: accountModel.getEmail,
+                          phoneNumber: accountModel.getPhoneNumber),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Center(
+                        child: OutlinedButton.icon(
+                            onPressed: () {
+                              _changeUserDetails(context);
+                              repository.updateAccountDetails(accountModel);
+                            },
+                            icon: const Icon(Icons.edit),
+                            label: const Text('Editar')),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: VehicleDetails(
+                        manufacturer: accountModel.getCarManufacturer,
+                        model: accountModel.getCarModel,
+                        modelYear: accountModel.getCarModelYear,
+                        plate: accountModel.getCarPlate,
+                        color: accountModel.carColor!,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Center(
+                        child: OutlinedButton.icon(
+                            onPressed: () {
+                              _changeVehicleDetails(context);
+                              repository.updateAccountDetails(accountModel);
+                            },
+                            icon: const Icon(Icons.edit),
+                            label: const Text('Editar')),
+                      ),
+                    ),
+                  ],
                 );
-              }),
+              },
             ),
           ),
         );
       }),
     );
   }
-}
 
-Future<void> _changeVehicleDetails(BuildContext context) {
-  AccountModel account = Provider.of<AccountModel>(context, listen: false);
-  TextEditingController manufacturer = TextEditingController();
-  TextEditingController model = TextEditingController();
-  TextEditingController year = TextEditingController();
-  TextEditingController plate = TextEditingController();
-  TextEditingController color = TextEditingController();
+  Future<void> _changeVehicleDetails(BuildContext context) {
+    AccountModel account = accountModel;
+    carModel.value = TextEditingValue(text: account.getCarModel);
+    carManufacturer.value = TextEditingValue(text: account.getCarManufacturer);
+    carYear.value = TextEditingValue(text: account.getCarModelYear.toString());
+    carPlate.value = TextEditingValue(text: account.getCarPlate);
+    carColor.value = TextEditingValue(text: account.getCarColor);
 
-  model.value = TextEditingValue(text: account.getCarModel);
-  manufacturer.value = TextEditingValue(text: account.getCarManufacturer);
-  year.value = TextEditingValue(text: account.getCarModelYear.toString());
-  plate.value = TextEditingValue(text: account.getCarPlate);
-  color.value = TextEditingValue(text: account.getCarColor);
-
-  return showDialog<void>(
-    barrierDismissible: false,
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        title: const Text('Alterar dados do Veiculo'),
-        content: SingleChildScrollView(
-          child: Column(children: [
-            UnderlineTextField(
-              label: 'Fabricante',
-              controller: manufacturer,
-            ),
-            UnderlineTextField(
-              label: 'Modelo',
-              controller: model,
-            ),
-            UnderlineTextField(
-              label: 'Ano',
-              controller: year,
-              keyboardType: TextInputType.number,
-            ),
-            UnderlineTextField(
-              label: 'Placa',
-              controller: plate,
-            ),
-            UnderlineTextField(
-              label: 'Cor',
-              controller: color,
-            ),
-          ]),
-        ),
-        actions: <Widget>[
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: Theme.of(context).textTheme.labelLarge,
-            ),
-            child: const Text('Cancelar'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+    return showDialog<void>(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).colorScheme.background,
+          title: const Text('Alterar dados do Veiculo'),
+          content: SingleChildScrollView(
+            child: Column(children: [
+              UnderlineTextField(
+                label: 'Fabricante',
+                controller: carManufacturer,
+              ),
+              UnderlineTextField(
+                label: 'Modelo',
+                controller: carModel,
+              ),
+              UnderlineTextField(
+                label: 'Ano',
+                controller: carYear,
+                keyboardType: TextInputType.number,
+              ),
+              UnderlineTextField(
+                label: 'Placa',
+                controller: carPlate,
+              ),
+              UnderlineTextField(
+                label: 'Cor',
+                controller: carColor,
+              ),
+            ]),
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: Theme.of(context).textTheme.labelLarge,
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-            child: const Text('Salvar'),
-            onPressed: () {
-              account.carManufacturer = manufacturer.value.text;
-              account.carModel = model.value.text;
-              account.carModelYear = int.parse(year.value.text);
-              account.carPlate = plate.value.text;
-              account.carColor = color.value.text;
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Salvar'),
+              onPressed: () {
+                account.setCarManufacturer = carManufacturer.value.text;
+                account.setCarModel = carModel.value.text;
+                account.setCarModelYear = int.parse(carYear.value.text);
+                account.setCarPlate = carPlate.value.text;
+                account.setCarColor = carColor.value.text;
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
-Future<void> _changeUserDetails(BuildContext context) {
-  AccountModel account = Provider.of<AccountModel>(context, listen: false);
-  TextEditingController fullName = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController phoneNumber = TextEditingController();
+  Future<void> _changeUserDetails(BuildContext context) {
+    AccountModel account = accountModel;
 
-  email.value = TextEditingValue(text: account.getEmail);
-  fullName.value = TextEditingValue(text: account.getFullLegalName);
-  phoneNumber.value = TextEditingValue(text: account.getPhoneNumber);
+    email.value = TextEditingValue(text: account.getEmail);
+    fullName.value = TextEditingValue(text: account.getFullLegalName);
+    phoneNumber.value = TextEditingValue(text: account.getPhoneNumber);
 
-  return showDialog<void>(
-    barrierDismissible: false,
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        title: const Text('Alterar dados do Veiculo'),
-        content: SingleChildScrollView(
-          child: Column(children: [
-            UnderlineTextField(
-              label: 'Nome Completo',
-              controller: fullName,
-            ),
-            UnderlineTextField(
-              label: 'Email',
-              controller: email,
-            ),
-            UnderlineTextField(
-              label: 'Telefone',
-              controller: phoneNumber,
-            ),
-          ]),
-        ),
-        actions: <Widget>[
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: Theme.of(context).textTheme.labelLarge,
-            ),
-            child: const Text('Cancelar'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+    return showDialog<void>(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).colorScheme.background,
+          title: const Text('Alterar dados do Veiculo'),
+          content: SingleChildScrollView(
+            child: Column(children: [
+              UnderlineTextField(
+                label: 'Nome Completo',
+                controller: fullName,
+              ),
+              UnderlineTextField(
+                label: 'Email',
+                controller: email,
+              ),
+              UnderlineTextField(
+                label: 'Telefone',
+                controller: phoneNumber,
+                keyboardType: TextInputType.number,
+              ),
+            ]),
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: Theme.of(context).textTheme.labelLarge,
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-            child: const Text('Salvar'),
-            onPressed: () {
-              account.setEmail = email.value.text;
-              account.setPhoneNumber = phoneNumber.value.text;
-              account.setFullLegalName = fullName.value.text;
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Salvar'),
+              onPressed: () {
+                setState(() {
+                  account.setEmail = email.value.text;
+                  account.setPhoneNumber = phoneNumber.value.text;
+                  account.setFullLegalName = fullName.value.text;
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

@@ -1,8 +1,11 @@
+import 'package:buscar/features/account/account_details/model/account_model.dart';
+import 'package:buscar/features/rides/ride_model/ride_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class RideDetailsModel extends ChangeNotifier {
-  late String rideId;
+  final String? rideId;
+  late String driverId;
   late String origin = '';
   late String destination = '';
   late LatLng originCoord;
@@ -11,19 +14,19 @@ class RideDetailsModel extends ChangeNotifier {
   late String departureTime = '';
   late String arrivalTime = '';
   late String status = '';
-  late String numberOfPassangers = '';
+  late int numberOfPassangers = 0;
   late String driverName = '';
   late String carModel = '';
   late String carPlate = '';
   late String carManufacturer = '';
 
   RideDetailsModel({
-    required this.rideId,
+    this.rideId,
   });
 
-  String get getNumberOfPassangers => numberOfPassangers;
+  int get getNumberOfPassangers => numberOfPassangers;
 
-  set setNumberOfPassangers(String value) {
+  set setNumberOfPassangers(int value) {
     numberOfPassangers = value;
   }
 
@@ -108,5 +111,31 @@ class RideDetailsModel extends ChangeNotifier {
   set setCarManufacturer(String carManufacturer) {
     this.carManufacturer = carManufacturer;
     notifyListeners();
+  }
+
+  get getDriverId => driverId;
+
+  set setDriverId(String driverId) {
+    this.driverId = driverId;
+    notifyListeners();
+  }
+
+  void cloneFromModel({required RideModel rideModel, AccountModel? account}) {
+    setOrigin = rideModel.origin;
+    setDestination = rideModel.destination;
+    setOriginCoord = rideModel.originCoord;
+    setDestinationCoord = rideModel.destinationCoord;
+    setDepartureTime = rideModel.departureTime.toString();
+    setArrivalTime = rideModel.arrivalTime.toString();
+    setDate = rideModel.date.toString();
+    setNumberOfPassangers = rideModel.numberOfPassangers;
+
+    if (account != null) {
+      setDriverId = account.accountId;
+      setDrivername = account.getFullLegalName;
+      setCarManufacturer = account.getCarManufacturer;
+      setCarModel = account.getCarModel;
+      setCarPlate = account.getCarPlate;
+    }
   }
 }

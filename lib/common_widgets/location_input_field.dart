@@ -18,6 +18,7 @@ class LocationInputField extends StatelessWidget {
     return SizedBox(
       height: 40,
       child: TextFormField(
+        keyboardType: TextInputType.streetAddress,
         focusNode: focusNode,
         controller: controller,
         style: TextStyle(

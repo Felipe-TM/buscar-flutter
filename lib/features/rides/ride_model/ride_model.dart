@@ -10,6 +10,7 @@ class RideModel extends ChangeNotifier {
   late TimeOfDay departureTime;
   late TimeOfDay arrivalTime;
   late TimeOfDay timeWindow;
+  late int numberOfPassangers;
 
   TimeOfDay get getTimeWindow => timeWindow;
 
@@ -73,6 +74,13 @@ class RideModel extends ChangeNotifier {
 
   set setSearchRadius(double searchRadius) {
     this.searchRadius = searchRadius;
+    notifyListeners();
+  }
+
+  get getNumberOfPassangers => numberOfPassangers;
+
+  set setNumberOfPassangers(int numberOfPassangers) {
+    this.numberOfPassangers = numberOfPassangers;
     notifyListeners();
   }
 }

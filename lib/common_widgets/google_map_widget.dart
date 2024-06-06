@@ -11,8 +11,10 @@ import 'loading_widget.dart';
 class GoogleMapWidget extends StatefulWidget {
   final Set<Marker> markers;
   final Function(LatLng)? onTap;
+  final CameraPosition? cameraPosition;
 
-  const GoogleMapWidget({super.key, required this.markers, this.onTap});
+  const GoogleMapWidget(
+      {super.key, required this.markers, this.onTap, this.cameraPosition});
 
   @override
   State<GoogleMapWidget> createState() => _GoogleMapWidgetState();
@@ -116,6 +118,29 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget>
   Widget build(BuildContext context) {
     while (isLoading) {
       return LoadingWidget(controller: controller);
+    }
+
+    if (widget.cameraPosition != null) {
+      return GoogleMap(
+        markers: markers,
+        mapType: MapType.normal,
+        zoomControlsEnabled: false,
+        gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+          Factory<OneSequenceGestureRecognizer>(
+            () => EagerGestureRecognizer(),
+          ),
+        },
+        onTap: (coord) {
+          widget.onTap!(coord);
+        },
+        initialCameraPosition: widget.cameraPosition!,
+        onMapCreated: (GoogleMapController controller) {
+          (Theme.of(context).brightness == Brightness.dark)
+              ? controller.setMapStyle(_darkMapStyle)
+              : controller.setMapStyle(_lightMapStyle);
+          _controller.complete(controller);
+        },
+      );
     }
 
     return (userCurrentPos != null)

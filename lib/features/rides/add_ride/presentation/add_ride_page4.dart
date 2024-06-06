@@ -1,35 +1,15 @@
 import 'package:buscar/common_widgets/navigation_button.dart';
+import 'package:buscar/features/rides/ride_model/ride_details_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddRidePage4 extends StatelessWidget {
   final Function()? onNext;
   final Function()? onBack;
 
   final TextStyle textStyle = const TextStyle(fontSize: 15);
-  final String origin;
-  final String destination;
-  final String departureTime;
-  final String arrivalTime;
-  final String rideStatus;
 
-  final String driverName;
-  final String carModel;
-  final String carManufacturer;
-  final String carPlate;
-
-  const AddRidePage4(
-      {super.key,
-      required this.origin,
-      required this.destination,
-      required this.departureTime,
-      required this.arrivalTime,
-      required this.rideStatus,
-      required this.driverName,
-      required this.carModel,
-      required this.carManufacturer,
-      required this.carPlate,
-      this.onNext,
-      this.onBack});
+  const AddRidePage4({super.key, this.onNext, this.onBack});
 
   @override
   Widget build(BuildContext context) {
@@ -49,93 +29,94 @@ class AddRidePage4 extends StatelessWidget {
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'De: $origin',
-                      style: textStyle,
-                    ),
-                    Text(
-                      'Para: $destination',
-                      style: textStyle,
-                    ),
-                    Text(
-                      'Saída: $departureTime',
-                      style: textStyle,
-                    ),
-                    Text(
-                      'Chegada (Previsão): $arrivalTime',
-                      style: textStyle,
-                    ),
-                    Row(
+                child: Consumer<RideDetailsModel>(
+                  builder: (BuildContext context, RideDetailsModel model,
+                      Widget? child) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: Container(
-                            color: Colors.grey,
-                          ),
+                        Text(
+                          'De: ${model.getOrigin}',
+                          style: textStyle,
+                        ),
+                        Text(
+                          'Para: ${model.getDestination}',
+                          style: textStyle,
+                        ),
+                        Text(
+                          'Saída: ${model.getDepartureTime}',
+                          style: textStyle,
+                        ),
+                        Text(
+                          'Chegada (Previsão): ${model.getArrivalTime}',
+                          style: textStyle,
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Container(
+                                color: Colors.grey,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 50),
+                              child: SizedBox(
+                                height: 100,
+                                width: 100,
+                                child: Container(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Text(
+                          'Motorista: ${model.getDriverName}',
+                          style: textStyle,
+                        ),
+                        Text(
+                          'Carro: ${model.getCarManufacturer} ${model.getCarModel}',
+                          style: textStyle,
+                        ),
+                        Text(
+                          'Placa: ${model.getCarPlate}',
+                          style: textStyle,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 50),
-                          child: SizedBox(
-                            height: 100,
-                            width: 100,
-                            child: Container(
-                              color: Colors.grey,
-                            ),
+                          padding: EdgeInsets.only(top: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              NavigationButton(
+                                onTap: () {
+                                  DefaultTabController.of(context).animateTo(2);
+                                },
+                                content: const Row(children: [
+                                  Icon(Icons.arrow_back),
+                                  Text('Voltar')
+                                ]),
+                              ),
+                              NavigationButton(
+                                onTap: () {},
+                                content: const Row(children: [
+                                  Text('Solicitar'),
+                                ]),
+                              ),
+                            ],
                           ),
                         )
-                      ],
-                    ),
-                    Text(
-                      'Motorista: $driverName',
-                      style: textStyle,
-                    ),
-                    Text(
-                      'Carro: $carManufacturer $carModel',
-                      style: textStyle,
-                    ),
-                    Text(
-                      'Placa: $carPlate',
-                      style: textStyle,
-                    ),
-                    Text(
-                      'Status: $rideStatus',
-                      style: textStyle,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          NavigationButton(
-                            onTap: () {
-                              DefaultTabController.of(context).animateTo(2);
-                            },
-                            content: const Row(children: [
-                              Icon(Icons.arrow_back),
-                              Text('Voltar')
-                            ]),
-                          ),
-                          NavigationButton(
-                            onTap: () {},
-                            content: const Row(children: [
-                              Text('Solicitar'),
-                            ]),
-                          ),
-                        ],
-                      ),
-                    )
-                  ]
-                      .map(
-                        (widget) => Padding(
-                          padding: const EdgeInsets.only(bottom: 15),
-                          child: widget,
-                        ),
-                      )
-                      .toList(),
+                      ]
+                          .map(
+                            (widget) => Padding(
+                              padding: const EdgeInsets.only(bottom: 15),
+                              child: widget,
+                            ),
+                          )
+                          .toList(),
+                    );
+                  },
                 ),
               ),
             ),

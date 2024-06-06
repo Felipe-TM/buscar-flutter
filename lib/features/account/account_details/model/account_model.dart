@@ -1,16 +1,32 @@
 import 'package:flutter/material.dart';
 
 class AccountModel extends ChangeNotifier {
-  late String fullLegalName = '';
-  late String email = '';
-  late String phoneNumber = '';
-  late String userRating = '';
-  late String userName = '';
-  late String carManufacturer = '';
-  late String carModel = '';
-  late int carModelYear = 0;
-  late String carPlate = '';
-  late String carColor = '';
+  final String accountId;
+
+  late String? fullLegalName = '';
+  late String? email = '';
+  late String? phoneNumber = '';
+  late String? userRating = '';
+  late String? userName = '';
+  late String? carManufacturer = '';
+  late String? carModel = '';
+  late int? carModelYear = 0;
+  late String? carColor = '';
+  late String? carPlate = '';
+
+  AccountModel({
+    required this.accountId,
+    this.fullLegalName,
+    this.email,
+    this.phoneNumber,
+    this.userRating,
+    this.userName,
+    this.carManufacturer,
+    this.carModel,
+    this.carModelYear,
+    this.carColor,
+    this.carPlate,
+  });
 
   get getFullLegalName => fullLegalName;
 
@@ -68,17 +84,17 @@ class AccountModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  get getCarPlate => carPlate;
-
-  set setCarPlate(String carPlate) {
-    this.carPlate = carPlate;
-    notifyListeners();
-  }
-
   get getCarColor => carColor;
 
   set setCarColor(String carColor) {
     this.carColor = carColor;
+    notifyListeners();
+  }
+
+  get getCarPlate => carPlate;
+
+  set setCarPlate(String carPlate) {
+    this.carPlate = carPlate;
     notifyListeners();
   }
 }

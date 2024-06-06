@@ -1,3 +1,4 @@
+import 'package:buscar/features/rides/ride_model/ride_details_model.dart';
 import 'package:buscar/features/rides/ride_model/ride_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,8 +20,15 @@ class FindRideScreen extends StatelessWidget {
             title: const Text('Procurando Carona'),
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           ),
-          body: ChangeNotifierProvider<RideModel>(
-            create: (context) => RideModel(),
+          body: MultiProvider(
+            providers: [
+              ChangeNotifierProvider<RideModel>(
+                create: (context) => RideModel(),
+              ),
+              ChangeNotifierProvider<RideDetailsModel>(
+                create: (BuildContext context) => RideDetailsModel(),
+              )
+            ],
             child: const TabBarView(
               physics: NeverScrollableScrollPhysics(),
               children: [

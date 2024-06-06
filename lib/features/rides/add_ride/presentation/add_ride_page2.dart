@@ -1,6 +1,8 @@
 import 'package:buscar/common_widgets/date_picker_button.dart';
 import 'package:buscar/common_widgets/location_input_box.dart';
 import 'package:buscar/common_widgets/time_picker_button.dart';
+import 'package:buscar/features/account/account_details/repository/account_repository.dart';
+import 'package:buscar/features/rides/ride_model/ride_details_model.dart';
 import 'package:buscar/features/rides/ride_model/ride_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,13 +21,18 @@ class AddRidePage2 extends StatefulWidget {
 class _AddRidePage2State extends State<AddRidePage2> {
   late TextEditingController _originController;
   late TextEditingController _destinationController;
-  late double _searchRadius;
+  late double _numberOfPassangers;
 
   @override
   void initState() {
-    _searchRadius = 1000;
+    _numberOfPassangers = 1;
     _originController = TextEditingController();
     _destinationController = TextEditingController();
+    Provider.of<RideModel>(context, listen: false).setDepartureTime =
+        TimeOfDay.now();
+    Provider.of<RideModel>(context, listen: false).setArrivalTime =
+        TimeOfDay.now();
+    Provider.of<RideModel>(context, listen: false).setDate = DateTime.now();
     super.initState();
   }
 
@@ -64,7 +71,7 @@ class _AddRidePage2State extends State<AddRidePage2> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Horario de saida:'),
+                  const Text('Horario de saida:'),
                   TimePickerButton(
                     getTime: (time) {
                       Provider.of<RideModel>(context, listen: false)
@@ -76,7 +83,7 @@ class _AddRidePage2State extends State<AddRidePage2> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Horario de Chegada:'),
+                  const Text('Horario de Chegada:'),
                   TimePickerButton(
                     getTime: (time) {
                       Provider.of<RideModel>(context, listen: false)
@@ -88,9 +95,9 @@ class _AddRidePage2State extends State<AddRidePage2> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Janela de Tempo:'),
+                  const Text('Janela de Tempo:'),
                   TimePickerButton(
-                    time: TimeOfDay(hour: 0, minute: 10),
+                    time: const TimeOfDay(hour: 0, minute: 10),
                     getTime: (time) {
                       Provider.of<RideModel>(context, listen: false)
                           .setTimeWindow = time;
@@ -103,28 +110,29 @@ class _AddRidePage2State extends State<AddRidePage2> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Area de Busca:'),
+                    const Text('Passageiros:'),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: Row(
                         children: [
                           Expanded(
                             child: Slider(
-                              value: _searchRadius,
-                              min: 500,
-                              max: 8500,
-                              divisions: 4,
-                              label: '$_searchRadius',
+                              value: _numberOfPassangers,
+                              min: 1,
+                              max: 4,
+                              divisions: 3,
+                              label: '${_numberOfPassangers.toInt()}',
                               onChanged: (newValue) {
                                 setState(() {
-                                  _searchRadius = newValue;
+                                  _numberOfPassangers = newValue;
                                   Provider.of<RideModel>(context, listen: false)
-                                      .setSearchRadius = _searchRadius;
+                                          .setNumberOfPassangers =
+                                      _numberOfPassangers.toInt();
                                 });
                               },
                             ),
                           ),
-                          Text('$_searchRadius m')
+                          Text('${_numberOfPassangers.toInt()}')
                         ],
                       ),
                     ),
@@ -149,12 +157,22 @@ class _AddRidePage2State extends State<AddRidePage2> {
               content:
                   const Row(children: [Icon(Icons.arrow_back), Text('Voltar')]),
             ),
-            NavigationButton(
-              onTap: () {
-                DefaultTabController.of(context).animateTo(2);
+            Consumer2<RideModel, AccountRepository>(
+              builder: (BuildContext context, RideModel rideModel,
+                  AccountRepository repository, Widget? child) {
+                return NavigationButton(
+                  onTap: () {
+                    rideModel.setNumberOfPassangers =
+                        _numberOfPassangers.toInt();
+                    Provider.of<RideDetailsModel>(context, listen: false)
+                        .cloneFromModel(
+                            rideModel: rideModel, account: repository.account);
+                    DefaultTabController.of(context).animateTo(2);
+                  },
+                  content: const Row(
+                      children: [Text('Proximo'), Icon(Icons.arrow_forward)]),
+                );
               },
-              content: const Row(
-                  children: [Text('Proximo'), Icon(Icons.arrow_forward)]),
             ),
           ],
         )

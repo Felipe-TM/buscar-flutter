@@ -18,7 +18,14 @@ class TimePickerButton extends StatefulWidget {
 }
 
 class _TimePickerButtonState extends State<TimePickerButton> {
-  TimeOfDay time = TimeOfDay.now();
+  late TimeOfDay time;
+
+  @override
+  void initState() {
+    time = TimeOfDay.now();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.time != null) time = widget.time!;
