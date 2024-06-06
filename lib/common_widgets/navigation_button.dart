@@ -5,10 +5,12 @@ class NavigationButton extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.content,
+    this.color,
   });
 
   final Function()? onTap;
   final Widget content;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class NavigationButton extends StatelessWidget {
       child: FilledButton(
           onPressed: onTap,
           style: FilledButton.styleFrom(
+            backgroundColor: color,
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8))),
           ),

@@ -10,7 +10,7 @@ class RideModel extends ChangeNotifier {
   late TimeOfDay departureTime;
   late TimeOfDay arrivalTime;
   late TimeOfDay timeWindow;
-  late int numberOfPassangers;
+  late int numberOfPassangers = 0;
 
   TimeOfDay get getTimeWindow => timeWindow;
 

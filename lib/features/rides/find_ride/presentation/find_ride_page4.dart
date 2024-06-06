@@ -1,35 +1,15 @@
 import 'package:buscar/common_widgets/navigation_button.dart';
+import 'package:buscar/features/rides/ride_model/ride_details_model.dart';
 import 'package:flutter/material.dart';
 
 class FindRidePage4 extends StatelessWidget {
   final Function()? onNext;
   final Function()? onBack;
+  final RideDetailsModel model;
 
   final TextStyle textStyle = const TextStyle(fontSize: 15);
-  final String origin;
-  final String destination;
-  final String departureTime;
-  final String arrivalTime;
-  final String rideStatus;
-
-  final String driverName;
-  final String carModel;
-  final String carManufacturer;
-  final String carPlate;
-
   const FindRidePage4(
-      {super.key,
-      required this.origin,
-      required this.destination,
-      required this.departureTime,
-      required this.arrivalTime,
-      required this.rideStatus,
-      required this.driverName,
-      required this.carModel,
-      required this.carManufacturer,
-      required this.carPlate,
-      this.onNext,
-      this.onBack});
+      {super.key, this.onBack, this.onNext, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -52,67 +32,82 @@ class FindRidePage4 extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'De: $origin',
-                      style: textStyle,
-                    ),
-                    Text(
-                      'Para: $destination',
-                      style: textStyle,
-                    ),
-                    Text(
-                      'Saída: $departureTime',
-                      style: textStyle,
-                    ),
-                    Text(
-                      'Chegada (Previsão): $arrivalTime',
-                      style: textStyle,
-                    ),
-                    Row(
+                    const Row(
                       children: [
-                        SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: Container(
-                            color: Colors.grey,
-                          ),
+                        Icon(
+                          Icons.add_road,
+                          color: Colors.amber,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 50),
-                          child: SizedBox(
-                            height: 100,
-                            width: 100,
-                            child: Container(
-                              color: Colors.grey,
+                          padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            'Dados da corrida:',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         )
                       ],
                     ),
                     Text(
-                      'Motorista: $driverName',
+                      'De: ${model.getOrigin}',
                       style: textStyle,
                     ),
                     Text(
-                      'Carro: $carManufacturer $carModel',
+                      'Para: ${model.getDestination}',
                       style: textStyle,
                     ),
                     Text(
-                      'Placa: $carPlate',
+                      'Data: ${model.getDate}',
                       style: textStyle,
                     ),
                     Text(
-                      'Status: $rideStatus',
+                      'Saída: ${model.getDepartureTime}',
+                      style: textStyle,
+                    ),
+                    Text(
+                      'Chegada (Previsão): ${model.getArrivalTime}',
+                      style: textStyle,
+                    ),
+                    Text(
+                      'Quantidade de passageiros: ${model.getNumberOfPassangers}',
                       style: textStyle,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.only(top: 30),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.local_taxi,
+                            color: Colors.green,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text(
+                              'Dados do motorista:',
+                              style: textStyle,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Text(
+                      'Motorista: ${model.getDriverName}',
+                      style: textStyle,
+                    ),
+                    Text(
+                      'Status da corrida: ${model.getStatus}',
+                      style: textStyle,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           NavigationButton(
                             onTap: () {
-                              DefaultTabController.of(context).animateTo(2);
+                              Navigator.pop(context);
                             },
                             content: const Row(children: [
                               Icon(Icons.arrow_back),

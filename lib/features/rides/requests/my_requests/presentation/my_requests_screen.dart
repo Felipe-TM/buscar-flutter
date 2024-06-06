@@ -11,7 +11,7 @@ class MyRequestsScreen extends StatelessWidget {
         title: const Text('Solicitações de Passageiros'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           children: [
             RequestTile(

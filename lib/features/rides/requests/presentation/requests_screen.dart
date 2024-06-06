@@ -83,7 +83,7 @@ class RequestsScreen extends StatelessWidget {
               ]
                   .map(
                     (widget) => Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20),
+                      padding: const EdgeInsets.symmetric(vertical: 20),
                       child: widget,
                     ),
                   )

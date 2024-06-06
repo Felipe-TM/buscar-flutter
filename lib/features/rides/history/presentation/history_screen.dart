@@ -79,7 +79,7 @@ class HistoryScreen extends StatelessWidget {
                   date: '15/12/2023'),
             ],
           ),
-          HistoryFilters(),
+          const HistoryFilters(),
         ],
       ),
     );

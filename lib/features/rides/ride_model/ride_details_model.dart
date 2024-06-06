@@ -1,7 +1,9 @@
+import 'package:buscar/common_widgets/time_picker_button.dart';
 import 'package:buscar/features/account/account_details/model/account_model.dart';
 import 'package:buscar/features/rides/ride_model/ride_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:intl/intl.dart';
 
 class RideDetailsModel extends ChangeNotifier {
   final String? rideId;
@@ -125,9 +127,9 @@ class RideDetailsModel extends ChangeNotifier {
     setDestination = rideModel.destination;
     setOriginCoord = rideModel.originCoord;
     setDestinationCoord = rideModel.destinationCoord;
-    setDepartureTime = rideModel.departureTime.toString();
-    setArrivalTime = rideModel.arrivalTime.toString();
-    setDate = rideModel.date.toString();
+    setDepartureTime = rideModel.departureTime.to24hours();
+    setArrivalTime = rideModel.arrivalTime.to24hours();
+    setDate = DateFormat('dd/MM/yyyy').format(rideModel.date);
     setNumberOfPassangers = rideModel.numberOfPassangers;
 
     if (account != null) {

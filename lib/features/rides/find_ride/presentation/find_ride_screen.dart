@@ -5,15 +5,27 @@ import 'package:provider/provider.dart';
 import 'find_ride_page1.dart';
 import 'find_ride_page2.dart';
 import 'find_ride_page3.dart';
-import 'find_ride_page4.dart';
 
-class FindRideScreen extends StatelessWidget {
+class FindRideScreen extends StatefulWidget {
   const FindRideScreen({super.key});
+
+  @override
+  State<FindRideScreen> createState() => _FindRideScreenState();
+}
+
+class _FindRideScreenState extends State<FindRideScreen> {
+  late RideDetailsModel selectedRide;
+
+  @override
+  void initState() {
+    selectedRide = RideDetailsModel();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Builder(builder: (context) {
         return Scaffold(
           appBar: AppBar(
@@ -25,9 +37,6 @@ class FindRideScreen extends StatelessWidget {
               ChangeNotifierProvider<RideModel>(
                 create: (context) => RideModel(),
               ),
-              ChangeNotifierProvider<RideDetailsModel>(
-                create: (BuildContext context) => RideDetailsModel(),
-              )
             ],
             child: const TabBarView(
               physics: NeverScrollableScrollPhysics(),
@@ -37,17 +46,6 @@ class FindRideScreen extends StatelessWidget {
                   child: FindRidePage2(),
                 ),
                 FindRidePage3(),
-                FindRidePage4(
-                  origin: 'R. Sen. Souza Naves, 2883',
-                  destination: 'Av. Me. Leônia Milito, 123',
-                  departureTime: '17:32',
-                  arrivalTime: '18:45',
-                  rideStatus: 'Em Andamento',
-                  driverName: 'Bruno',
-                  carModel: 'Fox',
-                  carManufacturer: 'VW',
-                  carPlate: '8HK26S',
-                ),
               ],
             ),
           ),
@@ -62,9 +60,6 @@ class FindRideScreen extends StatelessWidget {
               Tab(
                 icon: Icon(Icons.search),
               ),
-              Tab(
-                icon: Icon(Icons.check_sharp),
-              )
             ],
           ),
         );

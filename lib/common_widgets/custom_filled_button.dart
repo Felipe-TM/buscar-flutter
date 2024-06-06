@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomFilledButton extends StatefulWidget {
-  final Widget chield;
+  final Widget child;
   final Size size;
 
   const CustomFilledButton(
-      {super.key, required this.chield, this.size = const Size(125, 50)});
+      {super.key, required this.child, this.size = const Size(125, 50)});
 
   @override
   State<CustomFilledButton> createState() => _CustomFilledButtonState();
@@ -38,7 +38,7 @@ class _CustomFilledButtonState extends State<CustomFilledButton> {
                 Theme.of(context).colorScheme.background),
             backgroundColor: MaterialStatePropertyAll<Color>(
                 Theme.of(context).colorScheme.inversePrimary)),
-        child: widget.chield,
+        child: widget.child,
       ),
     );
   }

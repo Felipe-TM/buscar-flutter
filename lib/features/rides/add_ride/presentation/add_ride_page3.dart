@@ -1,61 +1,159 @@
-import 'package:buscar/common_widgets/google_map_widget.dart';
+import 'package:buscar/common_widgets/navigation_button.dart';
+import 'package:buscar/features/rides/add_ride/presentation/add_ride_end_page.dart';
+import 'package:buscar/features/rides/ride_model/ride_details_model.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
-import '../../../../common_widgets/navigation_button.dart';
+class AddRidePage3 extends StatelessWidget {
+  final Function()? onNext;
+  final Function()? onBack;
 
-class AddRidePage3 extends StatefulWidget {
-  const AddRidePage3({super.key});
+  final TextStyle textStyle = const TextStyle(fontSize: 15);
 
-  @override
-  State<AddRidePage3> createState() => _AddRidePage3State();
-}
-
-class _AddRidePage3State extends State<AddRidePage3> {
-  late Set<Marker> _markers;
-
-  @override
-  void initState() {
-    _markers = <Marker>{};
-    super.initState();
-  }
+  const AddRidePage3({super.key, this.onNext, this.onBack});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        GoogleMapWidget(
-          markers: _markers,
-        ),
-        Positioned(
-          bottom: 30,
-          right: 30,
-          child: SizedBox(
-            width: 120,
-            child: NavigationButton(
-                onTap: () {
-                  DefaultTabController.of(context).animateTo(3);
-                },
-                content: const Row(
-                  children: [Text('Proximo'), Icon(Icons.arrow_forward)],
-                )),
+    return Container(
+      decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.background,
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(10),
           ),
-        ),
-        Positioned(
-          bottom: 30,
-          left: 30,
-          child: SizedBox(
-            width: 120,
-            child: NavigationButton(
-                onTap: () {
-                  DefaultTabController.of(context).animateTo(1);
-                },
-                content: const Row(
-                  children: [Icon(Icons.arrow_back), const Text('Voltar')],
-                )),
+          boxShadow: const [BoxShadow(color: Colors.black38, blurRadius: 5)]),
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                child: Consumer<RideDetailsModel>(
+                  builder: (BuildContext context, RideDetailsModel model,
+                      Widget? child) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Row(
+                          children: [
+                            Icon(
+                              Icons.add_road,
+                              color: Colors.amber,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'Dados da corrida:',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Text(
+                          'De: ${model.getOrigin}',
+                          style: textStyle,
+                        ),
+                        Text(
+                          'Para: ${model.getDestination}',
+                          style: textStyle,
+                        ),
+                        Text(
+                          'Data: ${model.getDate}',
+                          style: textStyle,
+                        ),
+                        Text(
+                          'Saída: ${model.getDepartureTime}',
+                          style: textStyle,
+                        ),
+                        Text(
+                          'Chegada (Previsão): ${model.getArrivalTime}',
+                          style: textStyle,
+                        ),
+                        Text(
+                          'Quantidade de passageiros: ${model.getNumberOfPassangers}',
+                          style: textStyle,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.local_taxi,
+                                color: Colors.green,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  'Dados do motorista:',
+                                  style: textStyle,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Text(
+                          'Motorista: ${model.getDriverName}',
+                          style: textStyle,
+                        ),
+                        Text(
+                          'Carro: ${model.getCarManufacturer} ${model.getCarModel}',
+                          style: textStyle,
+                        ),
+                        Text(
+                          'Placa: ${model.getCarPlate}',
+                          style: textStyle,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              NavigationButton(
+                                onTap: () {
+                                  DefaultTabController.of(context).animateTo(1);
+                                },
+                                content: const Row(children: [
+                                  Icon(Icons.arrow_back),
+                                  Text('Voltar')
+                                ]),
+                              ),
+                              NavigationButton(
+                                color: Colors.green,
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) {
+                                      return const AddRideEndPage();
+                                    },
+                                  ));
+                                },
+                                content: const Row(children: [
+                                  Text('Solicitar'),
+                                ]),
+                              ),
+                            ],
+                          ),
+                        )
+                      ]
+                          .map(
+                            (widget) => Padding(
+                              padding: const EdgeInsets.only(bottom: 15),
+                              child: widget,
+                            ),
+                          )
+                          .toList(),
+                    );
+                  },
+                ),
+              ),
+            ),
           ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }

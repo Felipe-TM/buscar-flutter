@@ -1,4 +1,3 @@
-import 'package:buscar/common_widgets/widget_to_map_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -34,6 +33,7 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget>
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
+  // ignore: constant_identifier_names
   static const CameraPosition DEFAULT_INITIAL_POS = CameraPosition(
       target: LatLng(-23.318564475140054, -51.16910912796359),
       zoom: 14.151926040649414,
@@ -76,13 +76,6 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget>
     });
   }
 
-  Future<BitmapDescriptor> _getUserIcon() async {
-    return Icon(
-      Icons.api_rounded,
-      color: Colors.blue.shade400,
-    ).toBitmapDescriptor();
-  }
-
   Future _determinePosition() async {
     Position currentPosition;
 
@@ -117,7 +110,10 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget>
   @override
   Widget build(BuildContext context) {
     while (isLoading) {
-      return LoadingWidget(controller: controller);
+      return LoadingWidget(
+        controller: controller,
+        label: const Text('Carregando o Mapa...'),
+      );
     }
 
     if (widget.cameraPosition != null) {

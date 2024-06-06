@@ -1,7 +1,5 @@
 import 'package:buscar/common_widgets/buscar_title.dart';
 import 'package:buscar/common_widgets/custom_filled_button.dart';
-import 'package:buscar/common_widgets/div.dart';
-import 'package:buscar/common_widgets/google_button.dart';
 import 'package:buscar/common_widgets/password_text_field.dart';
 import 'package:buscar/common_widgets/shrinkeble_button.dart';
 import 'package:buscar/common_widgets/underline_text_field.dart';
@@ -37,7 +35,7 @@ class _LoginFormState extends State<LoginForm> {
               padding: const EdgeInsets.only(top: 25),
               child: ShrinkebleButton(
                 child: const CustomFilledButton(
-                  chield: Text('Login'),
+                  child: Text('Login'),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -50,12 +48,6 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
             const SignInButton(),
-            const Div(),
-            GoogleButton(
-              onPressed: () {
-                print('google');
-              },
-            )
           ]
               .map(
                 (widget) => Padding(

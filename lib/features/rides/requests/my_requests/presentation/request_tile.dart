@@ -50,7 +50,7 @@ class RequestTile extends StatelessWidget {
                   const SizedBox(width: 5),
                   Expanded(
                       child: Row(
-                    children: [Text('Para: '), destination],
+                    children: [const Text('Para: '), destination],
                   )),
                   date
                 ],

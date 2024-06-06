@@ -30,6 +30,23 @@ class _FindRidePage2State extends State<FindRidePage2> {
   }
 
   @override
+  void didChangeDependencies() {
+    Provider.of<RideModel>(context, listen: false).departureTime =
+        TimeOfDay.now();
+    Provider.of<RideModel>(context, listen: false).arrivalTime =
+        TimeOfDay.now();
+    Provider.of<RideModel>(context, listen: false).date = DateTime.now();
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    _originController.dispose();
+    _destinationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -64,7 +81,7 @@ class _FindRidePage2State extends State<FindRidePage2> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Horario de saida:'),
+                  const Text('Horario de saida:'),
                   TimePickerButton(
                     getTime: (time) {
                       Provider.of<RideModel>(context, listen: false)
@@ -76,7 +93,7 @@ class _FindRidePage2State extends State<FindRidePage2> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Horario de Chegada:'),
+                  const Text('Horario de Chegada:'),
                   TimePickerButton(
                     getTime: (time) {
                       Provider.of<RideModel>(context, listen: false)
@@ -88,9 +105,9 @@ class _FindRidePage2State extends State<FindRidePage2> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Janela de Tempo:'),
+                  const Text('Janela de Tempo:'),
                   TimePickerButton(
-                    time: TimeOfDay(hour: 0, minute: 10),
+                    time: const TimeOfDay(hour: 0, minute: 10),
                     getTime: (time) {
                       Provider.of<RideModel>(context, listen: false)
                           .setTimeWindow = time;
@@ -103,7 +120,7 @@ class _FindRidePage2State extends State<FindRidePage2> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Area de Busca:'),
+                    const Text('Area de Busca:'),
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: Row(

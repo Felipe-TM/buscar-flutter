@@ -1,10 +1,11 @@
 import 'package:buscar/common_widgets/google_map_widget.dart';
 import 'package:buscar/features/rides/add_ride/presentation/add_ride_page1.dart';
 import 'package:buscar/features/rides/add_ride/presentation/add_ride_page2.dart';
-import 'package:buscar/features/rides/add_ride/presentation/add_ride_page4.dart';
+import 'package:buscar/features/rides/add_ride/presentation/add_ride_page3.dart';
 import 'package:buscar/features/rides/ride_model/ride_details_model.dart';
 import 'package:buscar/features/rides/ride_model/ride_model.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 class AddRideScreen extends StatefulWidget {
@@ -21,8 +22,8 @@ class _AddRideScreenState extends State<AddRideScreen>
 
   @override
   void initState() {
-    mapWidget = GoogleMapWidget(
-      markers: Set(),
+    mapWidget = const GoogleMapWidget(
+      markers: <Marker>{},
     );
     _tabController = TabController(length: 3, vsync: this);
     super.initState();
@@ -59,7 +60,7 @@ class _AddRideScreenState extends State<AddRideScreen>
               SingleChildScrollView(
                 child: AddRidePage2(),
               ),
-              AddRidePage4(),
+              AddRidePage3(),
             ],
           ),
         ),
@@ -76,27 +77,5 @@ class _AddRideScreenState extends State<AddRideScreen>
         ]),
       ),
     );
-  }
-}
-
-class Page3 extends StatelessWidget {
-  const Page3({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Container(child: Text('Em desenvolvimento')));
-  }
-}
-
-class Page2 extends StatelessWidget {
-  const Page2({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Container(child: Text('Em desenvolvimento')));
   }
 }

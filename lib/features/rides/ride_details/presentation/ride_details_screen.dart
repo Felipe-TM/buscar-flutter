@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import 'ride_details_sheet.dart';
 
 class RideDetailsScreen extends StatefulWidget {
+  const RideDetailsScreen({super.key});
+
   @override
   State<RideDetailsScreen> createState() => _RideDetailsScreenState();
 }
@@ -71,7 +73,7 @@ class _RideDetailsScreenState extends State<RideDetailsScreen> {
               zoom: 16.151926040649414,
               tilt: 0.0),
         ),
-        RideDetailsSheet(),
+        const RideDetailsSheet(),
       ]),
     );
   }

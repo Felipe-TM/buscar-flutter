@@ -28,12 +28,17 @@ class _AddRidePage2State extends State<AddRidePage2> {
     _numberOfPassangers = 1;
     _originController = TextEditingController();
     _destinationController = TextEditingController();
-    Provider.of<RideModel>(context, listen: false).setDepartureTime =
-        TimeOfDay.now();
-    Provider.of<RideModel>(context, listen: false).setArrivalTime =
-        TimeOfDay.now();
-    Provider.of<RideModel>(context, listen: false).setDate = DateTime.now();
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    Provider.of<RideModel>(context, listen: false).departureTime =
+        TimeOfDay.now();
+    Provider.of<RideModel>(context, listen: false).arrivalTime =
+        TimeOfDay.now();
+    Provider.of<RideModel>(context, listen: false).date = DateTime.now();
+    super.didChangeDependencies();
   }
 
   @override
@@ -88,19 +93,6 @@ class _AddRidePage2State extends State<AddRidePage2> {
                     getTime: (time) {
                       Provider.of<RideModel>(context, listen: false)
                           .setArrivalTime = time;
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text('Janela de Tempo:'),
-                  TimePickerButton(
-                    time: const TimeOfDay(hour: 0, minute: 10),
-                    getTime: (time) {
-                      Provider.of<RideModel>(context, listen: false)
-                          .setTimeWindow = time;
                     },
                   ),
                 ],

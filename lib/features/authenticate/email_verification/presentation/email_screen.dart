@@ -11,7 +11,7 @@ class EmailScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              GoHome(context);
+              goHome(context);
             },
             icon: const Icon(Icons.arrow_back)),
         title: const Text('Email Verification'),
@@ -50,7 +50,7 @@ class EmailScreen extends StatelessWidget {
                     height: 45,
                     child: OutlinedButton(
                       onPressed: () {
-                        GoHome(context);
+                        goHome(context);
                       },
                       child: Text(
                         'Go Back',
@@ -68,6 +68,6 @@ class EmailScreen extends StatelessWidget {
     );
   }
 
-  void GoHome(BuildContext context) =>
+  void goHome(BuildContext context) =>
       Navigator.of(context).popUntil((route) => route.isFirst);
 }

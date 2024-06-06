@@ -113,7 +113,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ]
                     .map((widget) => Padding(
-                          padding: EdgeInsets.only(top: 50),
+                          padding: const EdgeInsets.only(top: 50),
                           child: widget,
                         ))
                     .toList(),

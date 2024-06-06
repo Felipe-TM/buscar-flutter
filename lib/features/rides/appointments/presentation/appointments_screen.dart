@@ -81,7 +81,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
                                     create: (BuildContext context) {
                                       return ride;
                                     },
-                                    child: RideDetailsScreen(),
+                                    child: const RideDetailsScreen(),
                                   ),
                                 ),
                               );

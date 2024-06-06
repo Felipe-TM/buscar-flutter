@@ -43,7 +43,7 @@ class SignInPage extends StatelessWidget {
                         );
                       },
                       child: const CustomFilledButton(
-                        chield: Text('Send'),
+                        child: Text('Send'),
                       ),
                     ),
                   ),
