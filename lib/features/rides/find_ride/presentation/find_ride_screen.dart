@@ -49,18 +49,20 @@ class _FindRideScreenState extends State<FindRideScreen> {
               ],
             ),
           ),
-          bottomNavigationBar: const TabBar(
-            tabs: [
-              Tab(
-                icon: Icon(Icons.map_outlined),
-              ),
-              Tab(
-                icon: Icon(Icons.list_alt),
-              ),
-              Tab(
-                icon: Icon(Icons.search),
-              ),
-            ],
+          bottomNavigationBar: const IgnorePointer(
+            child: TabBar(
+              tabs: [
+                Tab(
+                  icon: Icon(Icons.map_outlined),
+                ),
+                Tab(
+                  icon: Icon(Icons.list_alt),
+                ),
+                Tab(
+                  icon: Icon(Icons.search),
+                ),
+              ],
+            ),
           ),
         );
       }),

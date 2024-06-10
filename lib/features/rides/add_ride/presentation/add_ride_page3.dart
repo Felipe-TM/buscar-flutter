@@ -132,7 +132,7 @@ class AddRidePage3 extends StatelessWidget {
                                   ));
                                 },
                                 content: const Row(children: [
-                                  Text('Solicitar'),
+                                  Text('Enviar'),
                                 ]),
                               ),
                             ],

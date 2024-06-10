@@ -54,7 +54,10 @@ class _AppointmentsScreenState extends State<AppointmentsScreen>
       ),
       body: Builder(builder: (context) {
         while (isLoading) {
-          return LoadingWidget(controller: controller);
+          return LoadingWidget(
+            controller: controller,
+            label: const Text('Carregando Agenda...'),
+          );
         }
         return Stack(
           children: [

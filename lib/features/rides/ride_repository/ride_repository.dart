@@ -32,7 +32,8 @@ class FakeRideRepo extends ChangeNotifier implements RideRepository {
 
     var test2 = RideDetailsModel(rideId: 'teste2');
     test2.setDrivername = 'Wilson Maciel';
-    test2.setDestination = 'Teste2';
+    test2.setOrigin = 'Teste';
+    test2.setDestination = 'Rua Orlando Silva';
     test2.setOriginCoord =
         const LatLng(-23.286527628405555, -51.12419848357015);
     test2.setDestinationCoord =
@@ -40,6 +41,7 @@ class FakeRideRepo extends ChangeNotifier implements RideRepository {
     test2.setArrivalTime = TimeOfDay.now().to24hours();
     test2.setDepartureTime = TimeOfDay.now().to24hours();
     test2.setDate = DateFormat('dd/MM/yyyy').format(rideModel.date);
+    test2.setStatus = 'Em espera';
 
     rides.add(test1);
     rides.add(test2);

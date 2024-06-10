@@ -64,17 +64,19 @@ class _AddRideScreenState extends State<AddRideScreen>
             ],
           ),
         ),
-        bottomNavigationBar: const TabBar(tabs: [
-          Tab(
-            icon: Icon(Icons.map_outlined),
-          ),
-          Tab(
-            icon: Icon(Icons.list_alt),
-          ),
-          Tab(
-            icon: Icon(Icons.check_sharp),
-          )
-        ]),
+        bottomNavigationBar: const IgnorePointer(
+          child: TabBar(tabs: [
+            Tab(
+              icon: Icon(Icons.map_outlined),
+            ),
+            Tab(
+              icon: Icon(Icons.list_alt),
+            ),
+            Tab(
+              icon: Icon(Icons.check_sharp),
+            )
+          ]),
+        ),
       ),
     );
   }

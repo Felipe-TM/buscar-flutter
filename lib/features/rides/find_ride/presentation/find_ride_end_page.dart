@@ -2,17 +2,17 @@ import 'package:buscar/common_widgets/loading_widget.dart';
 import 'package:buscar/features/rides/home/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 
-class AddRideEndPage extends StatefulWidget {
-  const AddRideEndPage({super.key});
+class FindRideEndPage extends StatefulWidget {
+  const FindRideEndPage({super.key});
 
   @override
-  State<AddRideEndPage> createState() => _AddRideEndPageState();
+  State<FindRideEndPage> createState() => _AddRideEndPageState();
 }
 
-class _AddRideEndPageState extends State<AddRideEndPage>
+class _AddRideEndPageState extends State<FindRideEndPage>
     with TickerProviderStateMixin {
   late AnimationController controller;
-  bool isLoading = true;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -23,25 +23,14 @@ class _AddRideEndPageState extends State<AddRideEndPage>
         setState(() {});
       });
     controller.repeat(reverse: false);
-    publishRide();
     super.initState();
-  }
-
-  void publishRide() {
-    Future.delayed(Duration(seconds: 2)).whenComplete(() => isLoading = false);
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Oferecer Carona'),
+        title: const Text('Solicitar Carona'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Builder(builder: (context) {
@@ -65,7 +54,7 @@ class _AddRideEndPageState extends State<AddRideEndPage>
                   const Padding(
                     padding: EdgeInsets.only(top: 15),
                     child: Text(
-                      'Oferta de Carona enviada com sucesso',
+                      'Solicitação de Carona enviada com sucesso',
                       style: TextStyle(fontSize: 16),
                     ),
                   ),

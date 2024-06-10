@@ -1,3 +1,4 @@
+import 'package:buscar/features/rides/ride_details/presentation/ride_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class RequestTile extends StatelessWidget {
@@ -72,7 +73,16 @@ class RequestTile extends StatelessWidget {
           ],
         ),
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return RideDetailsScreen();
+            },
+          ),
+        );
+      },
     );
   }
 }
