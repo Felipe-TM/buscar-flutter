@@ -101,13 +101,13 @@ class _FindRidePage3State extends State<FindRidePage3>
             width: 120,
             child: NavigationButton(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return FindRidePage4(
-                        model: currentSelection,
-                      );
-                    },
-                  ));
+                  // Navigator.push(context, MaterialPageRoute(
+                  //   builder: (context) {
+                  //     return FindRidePage4(
+                  //       model: currentSelection,
+                  //     );
+                  //   },
+                  // ));
                 },
                 content: const Row(
                   children: [Text('Proximo'), Icon(Icons.arrow_forward)],

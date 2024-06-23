@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
             (BuildContext context, ConfigurationModel model, Widget? child) {
           return MaterialApp(
             title: 'Buscar Alpha Test',
+            debugShowCheckedModeBanner: false,
             home: LoginScreen(appVer: model.appVer),
             theme: model.getThemeMode
                 ? ThemeData(

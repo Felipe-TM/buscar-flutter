@@ -42,41 +42,6 @@ class HistoryScreen extends StatelessWidget {
                   destination: 'Av. Me. Leônia Milito, 123',
                   rideRating: '1,0',
                   date: '15/12/2023'),
-              HistoryListTile(
-                  origin: 'R. Sen. Souza Naves, 2883',
-                  destination: 'Av. Me. Leônia Milito, 123',
-                  rideRating: '1,0',
-                  date: '15/12/2023'),
-              HistoryListTile(
-                  origin: 'R. Sen. Souza Naves, 2883',
-                  destination: 'Av. Me. Leônia Milito, 123',
-                  rideRating: '1,0',
-                  date: '15/12/2023'),
-              HistoryListTile(
-                  origin: 'R. Sen. Souza Naves, 2883',
-                  destination: 'Av. Me. Leônia Milito, 123',
-                  rideRating: '1,0',
-                  date: '15/12/2023'),
-              HistoryListTile(
-                  origin: 'R. Sen. Souza Naves, 2883',
-                  destination: 'Av. Me. Leônia Milito, 123',
-                  rideRating: '1,0',
-                  date: '15/12/2023'),
-              HistoryListTile(
-                  origin: 'R. Sen. Souza Naves, 2883',
-                  destination: 'Av. Me. Leônia Milito, 123',
-                  rideRating: '1,0',
-                  date: '15/12/2023'),
-              HistoryListTile(
-                  origin: 'R. Sen. Souza Naves, 2883',
-                  destination: 'Av. Me. Leônia Milito, 123',
-                  rideRating: '1,0',
-                  date: '15/12/2023'),
-              HistoryListTile(
-                  origin: 'R. Sen. Souza Naves, 2883',
-                  destination: 'Av. Me. Leônia Milito, 123',
-                  rideRating: '1,0',
-                  date: '15/12/2023'),
             ],
           ),
           const HistoryFilters(),

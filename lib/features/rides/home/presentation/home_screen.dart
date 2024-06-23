@@ -4,7 +4,6 @@ import 'package:buscar/features/account/account_details/presentation/account_scr
 import 'package:buscar/features/rides/add_ride/presentation/add_ride_screen.dart';
 import 'package:buscar/features/rides/find_ride/presentation/find_ride_screen.dart';
 import 'package:buscar/features/rides/home/presentation/chat_screen.dart';
-import 'package:buscar/features/rides/home/presentation/chat_title.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common_widgets/action_icon_button.dart';
@@ -132,7 +131,7 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>  ChatScreen(),
+                      builder: (context) => ChatScreen(),
                     ),
                   );
                 },
