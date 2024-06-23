@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:buscar/common_widgets/custom_card.dart';
 import 'package:buscar/features/rides/requests/accept_passanger/presentation/accept_passanger_screen.dart';
 import 'package:buscar/features/rides/requests/my_requests/presentation/my_requests_screen.dart';
-import 'package:flutter/material.dart';
 
 class RequestsScreen extends StatelessWidget {
-  const RequestsScreen({super.key});
+  const RequestsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +23,11 @@ class RequestsScreen extends StatelessWidget {
                   color: Colors.blue.shade300,
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const AcceptPassangerScreen()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AcceptPassangerScreen (origin: '', destination: '', date: '', passangerRequests: '',),
+                      ),
+                    );
                   },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -54,9 +55,11 @@ class RequestsScreen extends StatelessWidget {
                   color: Colors.blue,
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MyRequestsScreen()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MyRequestsScreen(),
+                      ),
+                    );
                   },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,

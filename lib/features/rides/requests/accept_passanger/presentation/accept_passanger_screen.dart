@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:buscar/features/rides/ride_details/presentation/ride_details_screen.dart'; // Importe a tela RideDetailsScreen
 
-class RequestTile extends StatelessWidget {
+class AcceptPassangerScreen extends StatelessWidget {
   final String origin;
   final String destination;
   final String date;
   final String passangerRequests;
   final bool isPending;
 
-  RequestTile({
+  AcceptPassangerScreen({
     Key? key,
     required this.origin,
     required this.destination,
