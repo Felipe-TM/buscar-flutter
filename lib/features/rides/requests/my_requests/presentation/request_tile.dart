@@ -7,6 +7,7 @@ class RequestTile extends StatelessWidget {
   final Widget date;
   final Widget status;
   final bool isLoading;
+  final VoidCallback? onAccept; // Adicionar callback onAccept
 
   const RequestTile({
     super.key,
@@ -15,6 +16,7 @@ class RequestTile extends StatelessWidget {
     required this.date,
     required this.status,
     required this.isLoading,
+    this.onAccept, // Adicionar ao construtor
   });
 
   @override
@@ -55,6 +57,10 @@ class RequestTile extends StatelessWidget {
                   date
                 ],
               ),
+            ),
+            trailing: IconButton(
+              icon: const Icon(Icons.check),
+              onPressed: onAccept, // Chamar callback onAccept ao clicar
             ),
             onTap: () {},
           );
