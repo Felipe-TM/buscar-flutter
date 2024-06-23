@@ -29,7 +29,7 @@ class FakeAccRepo extends ChangeNotifier implements AccountRepository {
   void fetchAccountDetails(String id) {
     account = AccountModel(
       accountId: 'Teste',
-      userName: 'Felipe Torres',
+      userName: 'Thiago Mourão',
       userRating: '4.5',
       email: 'felipemaciel@exemplo.com',
       fullLegalName: 'Felipe Torres Maciel',
