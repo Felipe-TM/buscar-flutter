@@ -3,6 +3,8 @@ import 'package:buscar/common_widgets/custom_card.dart';
 import 'package:buscar/features/account/account_details/presentation/account_screen.dart';
 import 'package:buscar/features/rides/add_ride/presentation/add_ride_screen.dart';
 import 'package:buscar/features/rides/find_ride/presentation/find_ride_screen.dart';
+import 'package:buscar/features/rides/home/presentation/chat_screen.dart';
+import 'package:buscar/features/rides/home/presentation/chat_title.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common_widgets/action_icon_button.dart';
@@ -130,7 +132,7 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyWidget(),
+                      builder: (context) =>  ChatScreen(),
                     ),
                   );
                 },
@@ -158,20 +160,6 @@ class LeadingIcon extends StatelessWidget {
         Scaffold.of(context).openDrawer();
       },
       icon: const Icon(Icons.menu_rounded),
-    );
-  }
-}
-
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chat'),
-        backgroundColor: Theme.of(context).colorScheme.tertiary,
-      ),
     );
   }
 }
