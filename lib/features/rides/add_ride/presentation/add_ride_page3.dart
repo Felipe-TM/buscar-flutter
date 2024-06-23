@@ -4,13 +4,25 @@ import 'package:buscar/features/rides/ride_model/ride_details_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AddRidePage3 extends StatelessWidget {
+import '../../ride_repository/ride_repository.dart';
+
+class AddRidePage3 extends StatefulWidget {
   final Function()? onNext;
   final Function()? onBack;
 
+  const AddRidePage3({super.key, this.onNext, this.onBack});
+
+  @override
+  State<AddRidePage3> createState() => _AddRidePage3State();
+}
+
+class _AddRidePage3State extends State<AddRidePage3> {
   final TextStyle textStyle = const TextStyle(fontSize: 15);
 
-  const AddRidePage3({super.key, this.onNext, this.onBack});
+  void publishRide() {
+    RideDetailsModel detailsModel = Provider.of<RideDetailsModel>(context);
+    Provider.of<RideRepository>(context).publishRide(detailsModel);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +139,7 @@ class AddRidePage3 extends StatelessWidget {
                                 onTap: () {
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context) {
+                                      publishRide();
                                       return const AddRideEndPage();
                                     },
                                   ));

@@ -15,7 +15,7 @@ class RideDetailsModel extends ChangeNotifier {
   late String date = '';
   late String departureTime = '';
   late String arrivalTime = '';
-  late String status = '';
+  late String status = 'Em espera';
   late int numberOfPassangers = 0;
   late String driverName = '';
   late String carModel = '';

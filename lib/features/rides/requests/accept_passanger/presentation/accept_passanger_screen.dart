@@ -59,7 +59,7 @@ class _AcceptPassangerScreenState extends State<AcceptPassangerScreen>
                   origin: 'Rua Orlando Silva, 845',
                   destination: 'Rua General Horta Barbosa, 123',
                   date: '12/12/2026',
-                  passangerRequests: '2'),
+                  passangerRequests: '1'),
             ],
           ),
         );

@@ -154,10 +154,12 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget>
             },
             initialCameraPosition: userCurrentPos!,
             onMapCreated: (GoogleMapController controller) {
-              (Theme.of(context).brightness == Brightness.dark)
-                  ? controller.setMapStyle(_darkMapStyle)
-                  : controller.setMapStyle(_lightMapStyle);
-              _controller.complete(controller);
+              setState(() {
+                (Theme.of(context).brightness == Brightness.dark)
+                    ? controller.setMapStyle(_darkMapStyle)
+                    : controller.setMapStyle(_lightMapStyle);
+                _controller.complete(controller);
+              });
             },
           )
         : GoogleMap(
@@ -170,10 +172,12 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget>
             },
             initialCameraPosition: DEFAULT_INITIAL_POS,
             onMapCreated: (GoogleMapController controller) {
-              (Theme.of(context).brightness == Brightness.dark)
-                  ? controller.setMapStyle(_darkMapStyle)
-                  : controller.setMapStyle(_lightMapStyle);
-              _controller.complete(controller);
+              setState(() {
+                (Theme.of(context).brightness == Brightness.dark)
+                    ? controller.setMapStyle(_darkMapStyle)
+                    : controller.setMapStyle(_lightMapStyle);
+                _controller.complete(controller);
+              });
             },
           );
   }

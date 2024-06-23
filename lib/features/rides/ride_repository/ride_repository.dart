@@ -15,6 +15,8 @@ abstract class RideRepository extends ChangeNotifier {
 }
 
 class FakeRideRepo extends ChangeNotifier implements RideRepository {
+  var rides = <RideDetailsModel>{};
+
   @override
   Future<Set<RideDetailsModel>> findRides(RideModel rideModel) async {
     var rides = <RideDetailsModel>{};
@@ -23,9 +25,9 @@ class FakeRideRepo extends ChangeNotifier implements RideRepository {
     test1.setDrivername = 'Felipe Torres';
     test1.setDestination = 'Teste1';
     test1.setOriginCoord =
-        const LatLng(-23.286606467246642, -51.122567700512796);
+        const LatLng(-23.287424694342764, -51.122979786611964);
     test1.setDestinationCoord =
-        const LatLng(-23.284968591623986, -51.17193918237298);
+        const LatLng(-23.420732724864173, -51.94692811208516);
     test1.setOrigin = 'Rua Orlando Silva';
     test1.setArrivalTime = TimeOfDay.now().toString();
     test1.setDepartureTime = TimeOfDay.now().toString();
@@ -51,22 +53,6 @@ class FakeRideRepo extends ChangeNotifier implements RideRepository {
 
   @override
   Future<Set<RideDetailsModel>> getMyAppointments() async {
-    var rides = <RideDetailsModel>{};
-    var test1 = RideDetailsModel(rideId: 'teste');
-    test1.setDestination = 'Teste1';
-    test1.setOriginCoord =
-        const LatLng(-23.260702010373702, -51.138017066854104);
-    test1.setDestinationCoord =
-        const LatLng(-23.284968591623986, -51.17193918237298);
-    test1.setOrigin = 'Rua Orlando Silva';
-    var test2 = RideDetailsModel(rideId: 'teste2');
-    test2.setDestination = 'Teste2';
-    test2.setOriginCoord =
-        const LatLng(-23.260702010373702, -51.138017066854104);
-    test2.setDestinationCoord =
-        const LatLng(-23.284968591623986, -51.17193918237298);
-    rides.add(test1);
-    rides.add(test2);
     return Future.delayed(const Duration(seconds: 1)).then((value) => rides);
   }
 
@@ -78,6 +64,7 @@ class FakeRideRepo extends ChangeNotifier implements RideRepository {
 
   @override
   void publishRide(RideDetailsModel detailsModel) async {
-    // TODO: implement publishRide
+    rides.add(detailsModel);
+    notifyListeners();
   }
 }
