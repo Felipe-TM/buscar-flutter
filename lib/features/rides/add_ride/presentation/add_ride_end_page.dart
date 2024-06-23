@@ -1,6 +1,9 @@
 import 'package:buscar/common_widgets/loading_widget.dart';
 import 'package:buscar/features/rides/home/presentation/home_screen.dart';
+import 'package:buscar/features/rides/ride_model/ride_details_model.dart';
+import 'package:buscar/features/rides/ride_repository/ride_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddRideEndPage extends StatefulWidget {
   const AddRideEndPage({super.key});

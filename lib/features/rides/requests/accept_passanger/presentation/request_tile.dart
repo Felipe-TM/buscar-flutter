@@ -1,3 +1,4 @@
+import 'package:buscar/features/rides/requests/accept_passanger/presentation/accept_request.dart';
 import 'package:flutter/material.dart';
 import 'package:buscar/features/rides/ride_details/presentation/ride_details_screen.dart'; // Importe a tela RideDetailsScreen
 
@@ -94,7 +95,7 @@ class RequestTile extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return RideDetailsScreen(); // Navega para RideDetailsScreen ao clicar no tile
+              return const AcceptRequest();
             },
           ),
         );
