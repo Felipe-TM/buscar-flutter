@@ -32,13 +32,13 @@ class RequestsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        'Aceitar Passageiros',
+                        'Minhas Solicitações',
                         style: TextStyle(fontSize: 20),
                       ),
                       Row(
                         children: [
                           Icon(
-                            Icons.group,
+                            Icons.local_taxi,
                             size: 42,
                           ),
                           Icon(
@@ -62,13 +62,13 @@ class RequestsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        'Minhas solicitações',
+                        'Aceitar Passageiros',
                         style: TextStyle(fontSize: 20),
                       ),
                       Row(
                         children: [
                           Icon(
-                            Icons.local_taxi,
+                            Icons.group,
                             size: 42,
                           ),
                           Icon(

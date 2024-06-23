@@ -4,6 +4,7 @@ import 'package:buscar/features/account/configuration/presentation/configuration
 import 'package:buscar/features/rides/appointments/presentation/appointments_screen.dart';
 import 'package:buscar/features/rides/history/presentation/history_screen.dart';
 import 'package:buscar/features/rides/requests/presentation/requests_screen.dart';
+import 'package:buscar/features/rides/home/presentation/chat_screen.dart'; // Importar ChatScreen
 import 'package:flutter/material.dart';
 
 class HomeSideBar extends StatelessWidget {
@@ -46,6 +47,17 @@ class HomeSideBar extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => const HistoryScreen(),
+              ),
+            );
+          },
+        ),
+        ListTile(
+          title: const Text('Chat'), // Adicionar a opção CHAT
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChatScreen(), // Navegar para ChatScreen
               ),
             );
           },

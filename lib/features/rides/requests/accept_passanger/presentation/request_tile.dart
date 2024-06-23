@@ -1,19 +1,22 @@
 import 'package:buscar/features/rides/requests/accept_passanger/presentation/accept_request.dart';
 import 'package:flutter/material.dart';
+import 'package:buscar/features/rides/ride_details/presentation/ride_details_screen.dart'; // Importe a tela RideDetailsScreen
 
 class RequestTile extends StatelessWidget {
   final String origin;
   final String destination;
   final String date;
   final String passangerRequests;
+  final bool isPending;
 
   const RequestTile({
-    super.key,
+    Key? key,
     required this.origin,
     required this.destination,
     required this.date,
     required this.passangerRequests,
-  });
+    this.isPending = false,
+  }) : super(key: key); // Ajuste para receber a chave key e passar para o super
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +35,19 @@ class RequestTile extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
+          if (isPending)
+            Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(right: 5, left: 5),
+                  child: Icon(Icons.info_outline, color: Colors.orange),
+                ),
+                const Text(
+                  'Pendente',
+                  style: TextStyle(color: Colors.orange),
+                ),
+              ],
+            ),
           Row(
             children: [
               const Padding(
@@ -65,10 +81,11 @@ class RequestTile extends StatelessWidget {
               size: 20,
             ),
             Expanded(
-                child: Text(
-              'Para: $destination',
-              overflow: TextOverflow.ellipsis,
-            )),
+              child: Text(
+                'Para: $destination',
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
             Text(date)
           ],
         ),

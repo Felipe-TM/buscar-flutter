@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common_widgets/count_display_widget.dart';
+import '../../home/presentation/chat_title.dart'; // Certifique-se de que o caminho está correto
 
 class RideDetailsSheet extends StatefulWidget {
   const RideDetailsSheet({super.key});
@@ -116,7 +117,14 @@ class _RideDetailsSheetState extends State<RideDetailsSheet> {
                                           children: [
                                             CountDisplayWidget(
                                               child: ActionIconButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) => ChatTitle(title: 'Motorista'),
+                                                    ),
+                                                  );
+                                                },
                                                 icon: const Icon(
                                                     Icons.chat_outlined),
                                                 size: 42,
@@ -140,7 +148,14 @@ class _RideDetailsSheetState extends State<RideDetailsSheet> {
                                           children: [
                                             CountDisplayWidget(
                                               child: ActionIconButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) => ChatTitle(title: 'Passageiro'),
+                                                    ),
+                                                  );
+                                                },
                                                 icon: const Icon(
                                                     Icons.chat_outlined),
                                                 size: 42,
@@ -180,4 +195,12 @@ class _RideDetailsSheetState extends State<RideDetailsSheet> {
       ),
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      body: RideDetailsSheet(),
+    ),
+  ));
 }

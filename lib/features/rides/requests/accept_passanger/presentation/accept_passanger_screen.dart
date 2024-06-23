@@ -1,69 +1,104 @@
-import 'package:buscar/common_widgets/loading_widget.dart';
-import 'package:buscar/features/rides/requests/accept_passanger/presentation/request_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:buscar/features/rides/ride_details/presentation/ride_details_screen.dart'; // Importe a tela RideDetailsScreen
 
-class AcceptPassangerScreen extends StatefulWidget {
-  const AcceptPassangerScreen({super.key});
+class RequestTile extends StatelessWidget {
+  final String origin;
+  final String destination;
+  final String date;
+  final String passangerRequests;
+  final bool isPending;
 
-  @override
-  State<AcceptPassangerScreen> createState() => _AcceptPassangerScreenState();
-}
-
-class _AcceptPassangerScreenState extends State<AcceptPassangerScreen>
-    with TickerProviderStateMixin {
-  bool isLoading = true;
-  late AnimationController controller;
-
-  @override
-  void initState() {
-    controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    )..addListener(() {
-        setState(() {});
-      });
-    controller.repeat(reverse: false);
-    getRequests();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  void getRequests() {
-    Future.delayed(Duration(seconds: 2)).whenComplete(() => isLoading = false);
-  }
+  RequestTile({
+    Key? key,
+    required this.origin,
+    required this.destination,
+    required this.date,
+    required this.passangerRequests,
+    this.isPending = false,
+  }) : super(key: key); // Removido const
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Solicitações de Passageiros'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      ),
-      body: Builder(builder: (context) {
-        while (isLoading) {
-          return LoadingWidget(
-            controller: controller,
-            label: Text('Carregando...'),
-          );
-        }
-
-        return const SingleChildScrollView(
-          child: Column(
+    return ListTile(
+      minVerticalPadding: 20,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Icon(
+            Icons.home,
+            size: 22,
+          ),
+          Expanded(
+            child: Text(
+              'De: $origin',
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          if (isPending)
+            Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(right: 5, left: 5),
+                  child: Icon(Icons.info_outline, color: Colors.orange),
+                ),
+                const Text(
+                  'Pendente',
+                  style: TextStyle(color: Colors.orange),
+                ),
+              ],
+            ),
+          Row(
             children: [
-              RequestTile(
-                  origin: 'Rua Orlando Silva, 845',
-                  destination: 'Rua General Horta Barbosa, 123',
-                  date: '12/12/2026',
-                  passangerRequests: '1'),
+              const Padding(
+                padding: EdgeInsets.only(right: 5, left: 5),
+                child: Icon(Icons.group),
+              ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.red,
+                  shape: BoxShape.circle,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    passangerRequests,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
             ],
+          )
+        ],
+      ),
+      subtitle: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Icon(
+              Icons.place,
+              size: 20,
+            ),
+            Expanded(
+              child: Text(
+                'Para: $destination',
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Text(date)
+          ],
+        ),
+      ),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return RideDetailsScreen(); // Navega para RideDetailsScreen ao clicar no tile
+            },
           ),
         );
-      }),
+      },
     );
   }
 }
