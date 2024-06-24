@@ -3,7 +3,7 @@ import 'chat_title.dart';
 
 class ChatScreen extends StatelessWidget {
   final List<Map<String, dynamic>> conversations = [
-    {"name": "Thiago Mourão", "avatar": "assets/thiago_avatar.png", "gender": "male"},
+    {"name": "Felipe Torres", "avatar": "assets/thiago_avatar.png", "gender": "male"},
     {"name": "Roberto Arcanjo", "avatar": "assets/roberto_avatar.png", "gender": "male"},
     {"name": "Manoel Neto", "avatar": "assets/manoel_avatar.png", "gender": "male"},
     {"name": "Andressa Santos", "avatar": "assets/andressa_avatar.png", "gender": "female"},

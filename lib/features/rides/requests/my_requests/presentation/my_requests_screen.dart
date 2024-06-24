@@ -11,8 +11,8 @@ class _MyRequestsScreenState extends State<MyRequestsScreen> {
   List<Map<String, dynamic>> requests = [
     {
       "origin": "Rua Orlando Silva, 845",
-      "destination": "Rua General Horta Barbosa, 123",
-      "date": "12/12/2026",
+      "destination": "Av. Juscelino Kubitscheck, 1626",
+      "date": "23/06/2024",
       "status": "Pendente",
       "isLoading": false,
     },
