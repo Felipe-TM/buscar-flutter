@@ -25,7 +25,7 @@ class RequestsScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AcceptPassangerScreen (origin: '', destination: '', date: '', passangerRequests: '',),
+                        builder: (context) => MyWidget(),
                       ),
                     );
                   },
@@ -95,6 +95,21 @@ class RequestsScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Minhas Solicitações.'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: Center(child:Text('Você ainda não tem solicitações')),
     );
   }
 }

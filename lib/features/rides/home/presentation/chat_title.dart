@@ -32,11 +32,12 @@ class _ChatTitleState extends State<ChatTitle> {
         children: [
           Expanded(
             child: ListView.builder(
+              reverse: true,                         
               padding: const EdgeInsets.all(8.0),
               itemCount: _messages.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(_messages[index]),
+                return ListTile(                  
+                  title: Text(_messages[index], textAlign: TextAlign.right,),
                 );
               },
             ),

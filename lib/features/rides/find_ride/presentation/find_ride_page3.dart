@@ -132,3 +132,18 @@ class _FindRidePage3State extends State<FindRidePage3>
     );
   }
 }
+
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Procurar caronas'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: Center(child: Text('Não foi encontrado nenhuma carona.')),
+    );
+  }
+}
