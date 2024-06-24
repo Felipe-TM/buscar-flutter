@@ -52,7 +52,7 @@ class ListFilters extends StatelessWidget {
               color: Theme.of(context).colorScheme.inversePrimary,
               child: const DropdownMenu(
                 width: 150,
-                initialSelection: 'Motorista',
+                initialSelection: 'Passageiro',
                 enableSearch: false,
                 dropdownMenuEntries: [
                   DropdownMenuEntry(

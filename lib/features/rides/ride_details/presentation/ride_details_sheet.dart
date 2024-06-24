@@ -121,7 +121,10 @@ class _RideDetailsSheetState extends State<RideDetailsSheet> {
                                                   Navigator.push(
                                                     context,
                                                     MaterialPageRoute(
-                                                      builder: (context) => ChatTitle(title: 'Motorista'),
+                                                      builder: (context) =>
+                                                          ChatTitle(
+                                                              title:
+                                                                  'Motorista'),
                                                     ),
                                                   );
                                                 },
@@ -130,18 +133,6 @@ class _RideDetailsSheetState extends State<RideDetailsSheet> {
                                                 size: 42,
                                               ),
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 25),
-                                              child: CountDisplayWidget(
-                                                child: ActionIconButton(
-                                                  onPressed: () {},
-                                                  icon: const Icon(
-                                                      Icons.people_alt_rounded),
-                                                  size: 42,
-                                                ),
-                                              ),
-                                            )
                                           ],
                                         )
                                       : Row(
@@ -152,7 +143,10 @@ class _RideDetailsSheetState extends State<RideDetailsSheet> {
                                                   Navigator.push(
                                                     context,
                                                     MaterialPageRoute(
-                                                      builder: (context) => ChatTitle(title: 'Passageiro'),
+                                                      builder: (context) =>
+                                                          ChatTitle(
+                                                              title:
+                                                                  'Passageiro'),
                                                     ),
                                                   );
                                                 },
