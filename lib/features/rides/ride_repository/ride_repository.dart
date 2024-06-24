@@ -84,7 +84,7 @@ class FakeRideRepo extends ChangeNotifier implements RideRepository {
     ride.setOriginCoord = LatLng(-23.28761451997945, -51.12200008649667);
     ride.setOrigin =
         'R. Orlando Silva, 800-964 - Santa Izabel, Londrina - PR, 86031-010';
-    ride.setDrivername = 'Felipe Torres Maciel';
+    ride.setDrivername = 'Thiago Mourão';
     ride.setArrivalTime = '10:00';
     ride.setDepartureTime = '9:50';
     ride.setDate = '23/06/2024';
