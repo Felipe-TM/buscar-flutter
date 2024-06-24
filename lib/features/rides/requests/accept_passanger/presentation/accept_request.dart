@@ -1,9 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:buscar/common_widgets/navigation_button.dart';
 import 'package:buscar/features/rides/home/presentation/home_screen.dart';
-import 'package:flutter/material.dart';
 
-class AcceptRequest extends StatelessWidget {
-  const AcceptRequest({super.key});
+enum RequestStatus {
+  Pending,
+  Accepted,
+  Rejected,
+}
+
+class AcceptRequest extends StatefulWidget {
+  const AcceptRequest({Key? key}) : super(key: key);
+
+  @override
+  _AcceptRequestState createState() => _AcceptRequestState();
+}
+
+class _AcceptRequestState extends State<AcceptRequest> {
+  RequestStatus status = RequestStatus.Pending; // Estado inicial: pendente
 
   @override
   Widget build(BuildContext context) {
@@ -13,104 +26,164 @@ class AcceptRequest extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        const Icon(
-          Icons.account_circle,
-          size: 152,
-        ),
-        const Text(
-          "Thiago Vinicius",
-          style: TextStyle(fontSize: 25),
-        ),
-        const Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "4.9",
-              style: TextStyle(fontSize: 18),
+            const Icon(
+              Icons.account_circle,
+              size: 152,
             ),
-            Icon(Icons.star)
-          ],
-        ),
-        const Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: Text(
-            "Gostaria de compartilhar uma carona.",
-            style: TextStyle(fontSize: 18),
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            NavigationButton(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const AcceptedPage();
-                    },
-                  ),
-                );
-              },
-              content: const Text('Aceitar'),
-              color: Colors.green,
+            const Text(
+              "Thiago Vinicius",
+              style: TextStyle(fontSize: 25),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 50),
-              child: NavigationButton(
-                onTap: () {},
-                content: const Text('Recusar'),
-                color: Colors.red,
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "4.9",
+                  style: TextStyle(fontSize: 18),
+                ),
+                const Icon(Icons.star)
+              ],
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Text(
+                "Gostaria de compartilhar uma carona.",
+                style: TextStyle(fontSize: 18),
               ),
-            )
+            ),
+            if (status == RequestStatus.Pending)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  NavigationButton(
+                    onTap: () {
+                      setState(() {
+                        status = RequestStatus.Accepted;
+                      });
+                    },
+                    content: const Text('Aceitar'),
+                    color: Colors.green,
+                  ),
+                  const SizedBox(width: 50),
+                  NavigationButton(
+                    onTap: () {
+                      setState(() {
+                        status = RequestStatus.Rejected;
+                      });
+                    },
+                    content: const Text('Recusar'),
+                    color: Colors.red,
+                  ),
+                ],
+              ),
+            if (status == RequestStatus.Accepted)
+              const Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: AcceptedPage(),
+              ),
+            if (status == RequestStatus.Rejected)
+              const Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: RejectedPage(),
+              ),
           ],
-        )
-      ])),
+        ),
+      ),
     );
   }
 }
 
 class AcceptedPage extends StatelessWidget {
-  const AcceptedPage({super.key});
+  const AcceptedPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(
-          Icons.check_circle_outline_rounded,
-          size: 72,
-          color: Colors.green,
-        ),
-        const Padding(
-          padding: EdgeInsets.only(top: 15),
-          child: Text(
-            'Solicitação aceita com sucesso',
-            style: TextStyle(fontSize: 16, inherit: false),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.check_circle_outline_rounded,
+            size: 72,
+            color: Colors.green,
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: FilledButton(
+          const Padding(
+            padding: EdgeInsets.only(top: 15),
+            child: Text(
+              'Solicitação aceita com sucesso',
+              style: TextStyle(fontSize: 16, inherit: false),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: FilledButton(
               style: FilledButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10))),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) {
-                      return const HomeScreen();
-                    },
+                    builder: (context) => const HomeScreen(),
                   ),
                 );
               },
-              child: const Text('Finalizar')),
-        ),
-      ],
-    ));
+              child: const Text('Finalizar'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class RejectedPage extends StatelessWidget {
+  const RejectedPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.cancel_rounded,
+            size: 72,
+            color: Colors.red,
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 15),
+            child: Text(
+              'Solicitação recusada',
+              style: TextStyle(fontSize: 16, inherit: false),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: FilledButton(
+              style: FilledButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ),
+                );
+              },
+              child: const Text('Finalizar'),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
