@@ -102,10 +102,12 @@ class _FindRidePage3State extends State<FindRidePage3>
             child: NavigationButton(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(
-                     builder: (context) {
-                       return MyWidget();                     
-                     },
-                   ));
+                    builder: (context) {
+                      return FindRidePage4(
+                        model: currentSelection,
+                      );
+                    },
+                  ));
                 },
                 content: const Row(
                   children: [Text('Proximo'), Icon(Icons.arrow_forward)],
@@ -141,7 +143,7 @@ class MyWidget extends StatelessWidget {
         title: Text('Procurar caronas'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Center(child:Text('Não foi encontrado nenhuma carona.')),
+      body: Center(child: Text('Não foi encontrado nenhuma carona.')),
     );
   }
 }
